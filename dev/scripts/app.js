@@ -37,8 +37,8 @@ class App extends React.Component {
       params: {
         reqUrl: 'https://www.goodreads.com/search/index.xml',
         params: {
-          q: 'fiction',
-          'search[field]': 'genre',       
+          q: 'Harry Potter',
+          'search[field]': 'title',       
           key: 'GwIYI1RLhhFBh2UPUeLNw',
           page: 2  
         },
@@ -46,10 +46,12 @@ class App extends React.Component {
       },
       })
       .then((res) => {
-        console.log(res);
+        const genreResults = 
+        console.log(res.data.GoodreadsResponse.search.results.work);
+
+
       });
     }
-
 
   render() {
     return (
