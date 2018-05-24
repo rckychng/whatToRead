@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import qs from 'qs';
 import Genrepicker from './Genrepicker';
+import GenreRes from './GenreRes';
 //PAGES TO LINK TO
   //SIMILAR BOOKS: https://www.goodreads.com/book/similar/[id]
   //BOOK PAGE: https://www.goodreads.com/book/show/[bestbook id]
@@ -14,9 +15,8 @@ import Genrepicker from './Genrepicker';
     //Genres [5]: [Science Fiction] [Fantasy] [Thriller] [Romance] [fiction] [non-fiction][humor]
   //Store users selection in order to pass either to API call
 
-//Top 10 display
-  //Display matches from genre picker 10 books at a time
-    //however data is returned, we wil want to map 10 results and render the images to the screen along with a more information button (image, title)
+
+    
 
 //More Info Modal
   //On click of more info button, modal opens up with additional info about chosen book
@@ -39,8 +39,9 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      value: 'fiction'
-    }
+      value: "fiction",
+      books: []
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -49,13 +50,25 @@ class App extends React.Component {
       value: e.target.value
     });
   }
-  
-  handleSubmit (e) {
+
+  handleSubmit(e) {
     e.preventDefault();
-    this.getBooksByGenre();
+    this.batchCall();
   }
 
-  getBooksByGenre() {
+  //Top [whatever] display
+  //When user submits query
+  //call API  5 times - write function that loops - get 'i' from loop and pass it to API call for as long as the loop runs
+  //store initial return data into one large array
+  //page parameter will be a variable
+
+  batchCall() {
+    for(let i = 1; i <= 5; i++) {
+      this.getBooksByGenre(i)
+    }
+  }
+
+  getBooksByGenre(i) {
     axios({
       url: "http://proxy.hackeryou.com",
       method: "GET",
@@ -69,26 +82,37 @@ class App extends React.Component {
           q: this.state.value,
           "search[field]": "genre",
           key: "GwIYI1RLhhFBh2UPUeLNw",
-          page: 1
+          page: i
         },
         xmlToJSON: true
       }
     }).then(res => {
       const genreResults = res.data.GoodreadsResponse.search.results.work;
+      const completeBatch = Array.from(this.state.books);
+      completeBatch.push(genreResults);
+      this.setState({
+        books: completeBatch
+      });
+
+      console.log(this.state.books);
       console.log(genreResults);
     });
-    }
-
-
+  }
 
   render() {
-    return <div>
+    return (
+      <div>
         <header>
           <h1>What to Read</h1>
           <div className="genre-select">
             <form onSubmit={this.handleSubmit}>
               <label htmlFor="genrePicker">I feel like reading </label>
-              <select name="selectGenre" id="genrePicker" value={this.state.value} onChange={this.handleChange}>
+              <select
+                name="selectGenre"
+                id="genrePicker"
+                value={this.state.value}
+                onChange={this.handleChange}
+              >
                 <option value="fiction">Fiction</option>
                 <option value="fantasy">Fantasy</option>
                 <option value="non-fiction">Non-Fiction</option>
@@ -97,11 +121,15 @@ class App extends React.Component {
                 <option value="thriller">Thriller</option>
                 <option value="humor">Humor</option>
               </select>
-              <input type="submit"/>
+              <input type="submit" />
             </form>
           </div>
         </header>
-      </div>;
+        <section className="results">
+          <GenreRes books={this.state.books} />
+        </section>
+      </div>
+    );
   }
 }
 
