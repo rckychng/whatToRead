@@ -4,6 +4,7 @@ import axios from 'axios';
 import qs from 'qs';
 import Genrepicker from './Genrepicker';
 import GenreRes from './GenreRes';
+// import Modal from './Modal';
 //PAGES TO LINK TO
   //SIMILAR BOOKS: https://www.goodreads.com/book/similar/[id]
   //BOOK PAGE: https://www.goodreads.com/book/show/[bestbook id]
@@ -139,7 +140,7 @@ class App extends React.Component {
             </form>
           </div>
         </header>
-         <GenreRes
+        <GenreRes
               books={books}
               // key={key}
               // title={book.best_book.title}
