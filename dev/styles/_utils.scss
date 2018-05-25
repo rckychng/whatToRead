@@ -7,3 +7,12 @@ $scotch-mist: #f0eac7;
 $golden-poppy: #fac200;
 $forest-green: #309c25;
 $deep-forest-green: #123000;
+
+//POSITIONING ELEMENTS MIXIN
+@mixin position($type, $top, $right, $bottom, $left) { 
+    position: $type; 
+    top: $top; 
+    right: $right; 
+    bottom: $bottom; 
+    left: $left; 
+}
