@@ -4,7 +4,7 @@ import axios from 'axios';
 import qs from 'qs';
 import Genrepicker from './Genrepicker';
 import GenreRes from './GenreRes';
-// import Modal from './Modal';
+import Modal from './Modal';
 //PAGES TO LINK TO
   //SIMILAR BOOKS: https://www.goodreads.com/book/similar/[id]
   //BOOK PAGE: https://www.goodreads.com/book/show/[bestbook id]
@@ -41,7 +41,8 @@ class App extends React.Component {
     super();
     this.state = {
       value: "fiction",
-      books: []
+      books: [],
+      selectedBook: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -59,7 +60,6 @@ class App extends React.Component {
     });
     this.batchCall();
   }
-
   //Top [whatever] display
   //When user submits query
   //call API  5 times - write function that loops - get 'i' from loop and pass it to API call for as long as the loop runs
@@ -103,7 +103,7 @@ class App extends React.Component {
         books: completeBatch
       });
 
-      console.log(this.state.books);
+      // console.log(this.state.books);
     });
   }
 
@@ -114,7 +114,8 @@ class App extends React.Component {
 
   render() {
     const { books } = this.state;
-    console.log(books);
+    console.log(this.state.selectedBook);
+    // console.log(books);
     return (
       <div>
         <header>
@@ -142,10 +143,12 @@ class App extends React.Component {
         </header>
         <GenreRes
               books={books}
+              onBookSelect={selectedBook => this.setState({ selectedBook })}
               // key={key}
               // title={book.best_book.title}
               // cover={book.best_book.image_url}
             />
+        <Modal />
       </div>
     );
   }

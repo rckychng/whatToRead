@@ -1,16 +1,29 @@
 import React from 'react';
+import axios from "axios";
+import qs from "qs";
 
-//
+//id needs to be a variable
+//hook in selected book
+//selected book will pass id as props and our component will use that id to call axios
+
+//similar_books
+//title
+//publication_year
+//num_pages
+//image_url
+//authors > author > name
+//average_rating
+//description
+//link
 
 class Modal extends React.Component {
     constructor() {
         super();
-        this.setState = {
-            value: 
-            singleTitle:
+        this.state = {
+            singleTitle: []
         }
     }
-    getDetails () {
+    componentDidMount () {
             axios({
             url: "http://proxy.hackeryou.com",
             method: "GET",
@@ -27,13 +40,15 @@ class Modal extends React.Component {
                 xmlToJSON: true
             }
             }).then((res) =>{
-
+                console.log(res.data.GoodreadsResponse.book);
             })
     }
+
+
     render () {
         return (
             <div>
-                
+                cool
             </div>
         )
     }
