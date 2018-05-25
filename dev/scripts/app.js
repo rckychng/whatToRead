@@ -91,27 +91,29 @@ class App extends React.Component {
       }
     }).then(res => {
       const genreResults = res.data.GoodreadsResponse.search.results.work;
-      this.sortBookResults(genreResults);
+      // this.sortBookResults(genreResults);
+      const arrayA = genreResults.slice(0, 10);
+      const arrayB = genreResults.slice(10, 20);
+
+      const completeBatch = Array.from(this.state.books);
+      completeBatch.push(arrayA, arrayB);
+
+      this.setState({
+        books: completeBatch
+      });
+
+      console.log(this.state.books);
     });
   }
 
   //Separates each returned array of 20 books into arrays of 10 for display, then pushes all arrays into books state array
-  sortBookResults(genreResults) {
-    const arrayA = genreResults.slice(0, 10);
-    const arrayB = genreResults.slice(10, 20);
-
-    const completeBatch = Array.from(this.state.books);
-    completeBatch.push(arrayA, arrayB);
-    
-    this.setState({
-      books: completeBatch
-    });
-
-    console.log(this.state.books);
-  }
+  // sortBookResults(genreResults) {
+   
+  // }
 
   render() {
     const { books } = this.state;
+    console.log(books);
     return (
       <div>
         <header>
@@ -137,15 +139,12 @@ class App extends React.Component {
             </form>
           </div>
         </header>
-        <section className="results">
-          {books.map((book,key) => {
-            return <GenreRes
-              key={key}
-              title={book.best_book.title}
-              cover={book.best_book.image_url}
+         <GenreRes
+              books={books}
+              // key={key}
+              // title={book.best_book.title}
+              // cover={book.best_book.image_url}
             />
-          })}
-        </section>
       </div>
     );
   }
