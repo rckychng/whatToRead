@@ -17,10 +17,11 @@ import qs from "qs";
 //link
 
 class Modal extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
-            singleTitle: []
+            singleTitle: [],
+            bookID: props.bookID
         }
     }
     componentDidMount () {
@@ -34,7 +35,7 @@ class Modal extends React.Component {
             params: {
                 reqUrl: "https://www.goodreads.com/book/show.xml",
                 params: {
-                id: "29579",
+                id: this.state.bookID,
                 key: "GwIYI1RLhhFBh2UPUeLNw"
                 },
                 xmlToJSON: true
