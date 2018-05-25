@@ -53,6 +53,9 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState ({
+      books: []
+    });
     this.batchCall();
   }
 
@@ -88,15 +91,23 @@ class App extends React.Component {
       }
     }).then(res => {
       const genreResults = res.data.GoodreadsResponse.search.results.work;
-      const completeBatch = Array.from(this.state.books);
-      completeBatch.push(genreResults);
-      this.setState({
-        books: completeBatch
-      });
-
-      console.log(this.state.books);
-      console.log(genreResults);
+      this.sortBookResults(genreResults);
     });
+  }
+
+  //Separates each returned array of 20 books into arrays of 10 for display, then pushes all arrays into books state array
+  sortBookResults(genreResults) {
+    const arrayA = genreResults.slice(0, 10);
+    const arrayB = genreResults.slice(10, 20);
+
+    const completeBatch = Array.from(this.state.books);
+    completeBatch.push(arrayA, arrayB);
+    
+    this.setState({
+      books: completeBatch
+    });
+
+    console.log(this.state.books);
   }
 
   render() {
