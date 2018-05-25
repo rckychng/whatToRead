@@ -21,35 +21,45 @@ class Modal extends React.Component {
         super();
         this.state = {
             singleTitle: [],
-            bookID: props.bookID
+            bookID: props.bookID,
+            bookData: []
         }
     }
     componentDidMount () {
-            axios({
-            url: "http://proxy.hackeryou.com",
-            method: "GET",
-            dataResponse: "JSON",
-            paramsSerializer: function(params) {
-                return qs.stringify(params, { arrayFormat: "brackets" });
-            },
+        axios({
+        url: "http://proxy.hackeryou.com",
+        method: "GET",
+        dataResponse: "JSON",
+        paramsSerializer: function(params) {
+            return qs.stringify(params, { arrayFormat: "brackets" });
+        },
+        params: {
+            reqUrl: "https://www.goodreads.com/book/show.xml",
             params: {
-                reqUrl: "https://www.goodreads.com/book/show.xml",
-                params: {
-                id: this.state.bookID,
-                key: "GwIYI1RLhhFBh2UPUeLNw"
-                },
-                xmlToJSON: true
-            }
-            }).then((res) =>{
-                console.log(res.data.GoodreadsResponse.book);
-            })
+            id: this.state.bookID,
+            key: "GwIYI1RLhhFBh2UPUeLNw"
+            },
+            xmlToJSON: true
+        }
+        }).then((res) =>{
+            const bookData = res.data.GoodreadsResponse.book;
+
+            this.setState ({
+                bookData: bookData
+            });
+        })
     }
 
 
     render () {
+        const {bookData} = this.state;
+        console.log(bookData);
         return (
-            <div>
-                cool
+            <div className="modal">
+                <h2>{bookData.title}</h2>
+                <img src={bookData.img_url} alt=""/>
+                <div dangerouslySetInnerHTML= {{__html: bookData.description}}/>
+                <p>{bookData.average_rating}</p>
             </div>
         )
     }
