@@ -114,6 +114,7 @@ class App extends React.Component {
 
   render() {
     const { books } = this.state;
+    const { selectedBook} = this.state;
     console.log(this.state.selectedBook);
     // console.log(books);
     return (
@@ -148,7 +149,9 @@ class App extends React.Component {
               // title={book.best_book.title}
               // cover={book.best_book.image_url}
             />
-        <Modal />
+        {selectedBook.best_book !== undefined && <Modal
+            bookID={selectedBook.best_book.id.$t}
+             />}
       </div>
     );
   }
