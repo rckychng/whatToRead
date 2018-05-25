@@ -1,11 +1,17 @@
 import React from 'react';
 
-const GenreRes = ({title,cover}) => {
+const GenreRes = (props) => {
     return (
-        <div>
-            <img src={cover} alt="Book Cover"/>
-            <h2>{title}</h2>
-        </div>
+        <section className="results">
+        {props.books.map((book) => {
+            return (
+                <div key={book[0].best_book.id.$t}>
+                    <img src={book[0].best_book.image_url} alt="Book Cover"/>
+                    <h2>{book[0].best_book.title}</h2>
+                </div>
+            )
+        })}  
+        </section>  
     )
 }
 
