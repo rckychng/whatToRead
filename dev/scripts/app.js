@@ -63,7 +63,7 @@ class App extends React.Component {
   //page parameter will be a variable
 
   batchCall() {
-    for(let i = 1; i <= 5; i++) {
+    for(let i = 1; i <= 1; i++) {
       this.getBooksByGenre(i)
     }
   }
@@ -88,18 +88,20 @@ class App extends React.Component {
       }
     }).then(res => {
       const genreResults = res.data.GoodreadsResponse.search.results.work;
-      const completeBatch = Array.from(this.state.books);
-      completeBatch.push(genreResults);
+      // const completeBatch = Array.from(this.state.books);
+      // completeBatch.push(genreResults);
       this.setState({
-        books: completeBatch
+        // books: completeBatch
+        books: genreResults
       });
 
       console.log(this.state.books);
-      console.log(genreResults);
+      // console.log(genreResults);
     });
   }
 
   render() {
+    const { books } = this.state;
     return (
       <div>
         <header>
@@ -126,7 +128,13 @@ class App extends React.Component {
           </div>
         </header>
         <section className="results">
-          <GenreRes books={this.state.books} />
+          {books.map((book,key) => {
+            return <GenreRes
+              key={key}
+              title={book.best_book.title}
+              cover={book.best_book.image_url}
+            />
+          })}
         </section>
       </div>
     );
