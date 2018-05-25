@@ -111,6 +111,7 @@ class App extends React.Component {
   }
 
   render() {
+    const { books } = this.state;
     return (
       <div>
         <header>
@@ -137,7 +138,13 @@ class App extends React.Component {
           </div>
         </header>
         <section className="results">
-          <GenreRes books={this.state.books} />
+          {books.map((book,key) => {
+            return <GenreRes
+              key={key}
+              title={book.best_book.title}
+              cover={book.best_book.image_url}
+            />
+          })}
         </section>
       </div>
     );
