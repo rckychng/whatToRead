@@ -5,6 +5,7 @@ import qs from 'qs';
 import Genrepicker from './Genrepicker';
 import GenreRes from './GenreRes';
 import Modal from './Modal';
+import firebase from 'firebase';
 //PAGES TO LINK TO
   //SIMILAR BOOKS: https://www.goodreads.com/book/similar/[id]
   //BOOK PAGE: https://www.goodreads.com/book/show/[bestbook id]
@@ -56,7 +57,6 @@ class App extends React.Component {
       bookTitle: '',
       bookAuthor: ''
     };
-    this.logout = this.logout.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -131,7 +131,7 @@ class App extends React.Component {
   }
 
   // sortBookResults(genreResults) {
-   
+
   // }
 
   render() {
@@ -139,16 +139,9 @@ class App extends React.Component {
     const { selectedBook} = this.state;
     console.log(this.state.selectedBook);
     // console.log(books);
-    return <div>
+    return (
+      <div>
         <header>
-          {this.state.loggedIn === false && <button
-              onClick={this.loginWithGoogle}
-            >
-              Log in? I guess..
-            </button>}
-          {this.state.loggedIn === true ? <button onClick={this.logout}>
-              WOW GET OUT OF 'ERE.
-            </button> : null}
           <h1>What to Read</h1>
           <div className="genre-select">
             <form onSubmit={this.handleSubmit}>
@@ -176,7 +169,7 @@ class App extends React.Component {
         {selectedBook.best_book !== undefined && <Modal
             bookID={selectedBook.best_book.id.$t}
             onClose={selectedBook => this.setState({selectedBook})}
-             />}
+        />}
       </div>
     );
   }
