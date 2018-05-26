@@ -151,6 +151,7 @@ class App extends React.Component {
             />
         {selectedBook.best_book !== undefined && <Modal
             bookID={selectedBook.best_book.id.$t}
+            onClose={selectedBook => this.setState({selectedBook})}
              />}
       </div>
     );
