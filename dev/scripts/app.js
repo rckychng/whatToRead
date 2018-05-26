@@ -56,6 +56,7 @@ class App extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.saveToFirebase = this.saveToFirebase.bind(this);
   }
 
   handleChange(e) {
@@ -66,6 +67,7 @@ class App extends React.Component {
   
   saveToFirebase () {
     // e.preventDefault();
+    if (this.state.bookToSave.best_book !== undefined) {
     const savedBook = {
       bookImage: this.state.bookToSave.best_book.image_url,
       bookTitle: this.state.bookToSave.best_book.title,
@@ -78,6 +80,11 @@ class App extends React.Component {
     
     dbRef.push(savedBook);
     console.log(savedBook)
+
+    this.setState ({
+      bookToSave: []
+    });
+  }
   }
 
   handleSubmit(e) {
@@ -162,7 +169,7 @@ class App extends React.Component {
               books={books}
               onBookSelect={selectedBook => this.setState({ selectedBook })}
               bookSave={bookToSave => this.setState({bookToSave})} 
-              saveToFirebase={this.state.bookToSave.best_book !== undefined && this.saveToFirebase()}
+              saveToFirebase={this.saveToFirebase()}
               // key={key}
               // title={book.best_book.title}
               // cover={book.best_book.image_url}
