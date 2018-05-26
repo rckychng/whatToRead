@@ -13,9 +13,8 @@ import firebase from 'firebase';
 
 
 //Genre picker 
-  //Allow user to select a genre (clarifying question: genre dropdown 
-    //Genres [5]: [Science Fiction] [Fantasy] [Thriller] [Romance] [fiction] [non-fiction][humor]
-  //Store users selection in order to pass either to API call
+  //scroll through results 10 at a time
+  //make button to scroll through results
 
 
     
@@ -53,9 +52,7 @@ class App extends React.Component {
       books: [],
       selectedBook: [],
       loggedIn: false,
-      bookImage: '',
-      bookTitle: '',
-      bookAuthor: ''
+      bookToSave: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -69,17 +66,18 @@ class App extends React.Component {
   saveToFirebase (e) {
     e.preventDefault();
 
-    const dbRef = firebase.database().ref();
-
-    dbRef.on('value', (snapshot) => {
-      console.log(snapshot.val());
-    });
-
     const savedBook = {
-      bookImage: '',
-      bookTitle: '' ,
-      bookAuthor:''
+      bookImage: this.state.bookToSave.best_book.image_url,
+      bookTitle: this.state.bookToSave.best_book.title,
+      bookAuthor: this.state.bookToSave.best_book.author.name
     }
+    const dbRef = firebase.database().ref('savedBooks');
+    dbRef.on('value', (snapshot) => {
+      // console.log(snapshot.val());
+    });
+    
+    dbRef.push(savedBook);
+    console.log(savedBook)
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -121,7 +119,7 @@ class App extends React.Component {
 
       const completeBatch = Array.from(this.state.books);
       completeBatch.push(arrayA, arrayB);
-
+      // console.log(completeBatch);
       this.setState({
         books: completeBatch
       });
@@ -137,7 +135,7 @@ class App extends React.Component {
   render() {
     const { books } = this.state;
     const { selectedBook} = this.state;
-    console.log(this.state.selectedBook);
+    // console.log(this.state.selectedBook);
     // console.log(books);
     return (
       <div>
@@ -162,6 +160,7 @@ class App extends React.Component {
         <GenreRes
               books={books}
               onBookSelect={selectedBook => this.setState({ selectedBook })}
+              bookSave={bookToSave => this.setState({bookToSave})}
               // key={key}
               // title={book.best_book.title}
               // cover={book.best_book.image_url}
