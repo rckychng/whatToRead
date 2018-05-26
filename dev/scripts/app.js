@@ -5,6 +5,7 @@ import qs from 'qs';
 import Genrepicker from './Genrepicker';
 import GenreRes from './GenreRes';
 import Modal from './Modal';
+import firebase from 'firebase';
 //PAGES TO LINK TO
   //SIMILAR BOOKS: https://www.goodreads.com/book/similar/[id]
   //BOOK PAGE: https://www.goodreads.com/book/show/[bestbook id]
@@ -32,8 +33,16 @@ import Modal from './Modal';
     //display saved books, each saved book has checkable 'reading' and 'read' options and delete book button
 
     //FIREBASE
-      // const config = { apiKey: "AIzaSyBkxhr4FMicWjtQin03JrWbbGVhe8mJgzM", authDomain: "whattoreadapp.firebaseapp.com", databaseURL: "https://whattoreadapp.firebaseio.com", projectId: "whattoreadapp", storageBucket: "whattoreadapp.appspot.com", messagingSenderId: "493854943854" };
-      // firebase.initializeApp(config);
+const config = { 
+  apiKey: "AIzaSyBkxhr4FMicWjtQin03JrWbbGVhe8mJgzM", 
+  authDomain: "whattoreadapp.firebaseapp.com", 
+  databaseURL: "https://whattoreadapp.firebaseio.com", 
+  projectId: "whattoreadapp", 
+  storageBucket: "whattoreadapp.appspot.com", 
+  messagingSenderId: "493854943854" 
+};
+
+firebase.initializeApp(config);
 
 
 class App extends React.Component {
@@ -42,17 +51,36 @@ class App extends React.Component {
     this.state = {
       value: "fiction",
       books: [],
-      selectedBook: []
+      selectedBook: [],
+      loggedIn: false,
+      bookImage: '',
+      bookTitle: '',
+      bookAuthor: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange(e) {
     this.setState({
       value: e.target.value
     });
   }
+  saveToFirebase (e) {
+    e.preventDefault();
 
+    const dbRef = firebase.database().ref();
+
+    dbRef.on('value', (snapshot) => {
+      console.log(snapshot.val());
+    });
+
+    const savedBook = {
+      bookImage: '',
+      bookTitle: '' ,
+      bookAuthor:''
+    }
+  }
   handleSubmit(e) {
     e.preventDefault();
     this.setState ({
@@ -60,11 +88,6 @@ class App extends React.Component {
     });
     this.batchCall();
   }
-  //Top [whatever] display
-  //When user submits query
-  //call API  5 times - write function that loops - get 'i' from loop and pass it to API call for as long as the loop runs
-  //store initial return data into one large array
-  //page parameter will be a variable
 
   batchCall() {
     for(let i = 1; i <= 5; i++) {
@@ -107,9 +130,8 @@ class App extends React.Component {
     });
   }
 
-  //Separates each returned array of 20 books into arrays of 10 for display, then pushes all arrays into books state array
   // sortBookResults(genreResults) {
-   
+
   // }
 
   render() {
@@ -124,12 +146,7 @@ class App extends React.Component {
           <div className="genre-select">
             <form onSubmit={this.handleSubmit}>
               <label htmlFor="genrePicker">I feel like reading </label>
-              <select
-                name="selectGenre"
-                id="genrePicker"
-                value={this.state.value}
-                onChange={this.handleChange}
-              >
+              <select name="selectGenre" id="genrePicker" value={this.state.value} onChange={this.handleChange}>
                 <option value="fiction">Fiction</option>
                 <option value="fantasy">Fantasy</option>
                 <option value="non-fiction">Non-Fiction</option>
@@ -152,7 +169,7 @@ class App extends React.Component {
         {selectedBook.best_book !== undefined && <Modal
             bookID={selectedBook.best_book.id.$t}
             onClose={selectedBook => this.setState({selectedBook})}
-             />}
+        />}
       </div>
     );
   }
