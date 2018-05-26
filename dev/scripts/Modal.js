@@ -6,6 +6,8 @@ import qs from "qs";
 //hook in selected book
 //selected book will pass id as props and our component will use that id to call axios
 
+//we need to map [or for loop] through similar books 10 at a time
+
 //similar_books
 //title
 //publication_year
@@ -54,7 +56,7 @@ class Modal extends React.Component {
 
     render () {
         const {bookData} = this.state;
-        console.log(bookData);
+        // console.log(bookData);
         return (
             <div className="modal">
                 <h2>{bookData.title}</h2>
