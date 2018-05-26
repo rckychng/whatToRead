@@ -14,7 +14,7 @@ const GenreRes = (props) => {
                 <div key={book[0].best_book.id.$t} onClick={() => props.onBookSelect(book[0])}>
                     <img src={book[0].best_book.image_url} alt="Book Cover"/>
                     <h2>{book[0].best_book.title}</h2>
-                    <button onClick={this.saveToFirebase() => props.bookSave(book[0])} className="add-to-shelf">Add to Shelf</button>
+                    <button onClick={() => props.bookSave(book[0])} className="add-to-shelf">Add to Shelf</button>
                 </div>
             )
         })}  

@@ -71,13 +71,13 @@ class App extends React.Component {
       bookTitle: this.state.bookToSave.best_book.title,
       bookAuthor: this.state.bookToSave.best_book.author.name
     }
-    const dbRef = firebase.database().ref('savedBooks');
+    const dbRef = firebase.database().ref();
     dbRef.on('value', (snapshot) => {
-      // console.log(snapshot.val());
+      console.log(snapshot.val());
     });
     
     dbRef.push(savedBook);
-    console.log(savedBook)
+    console.log(savedBook);
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -160,8 +160,8 @@ class App extends React.Component {
         <GenreRes
               books={books}
               onBookSelect={selectedBook => this.setState({ selectedBook })}
-              bookSave={bookToSave => this.setState({bookToSave})}
               // key={key}
+              bookSave={bookToSave => this.setState({bookToSave})}
               // title={book.best_book.title}
               // cover={book.best_book.image_url}
             />
