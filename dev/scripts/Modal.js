@@ -22,7 +22,8 @@ class Modal extends React.Component {
         this.state = {
             singleTitle: [],
             bookID: props.bookID,
-            bookData: []
+            bookData: [],
+            onClose: props.onClose
         }
     }
     componentDidMount () {
@@ -60,6 +61,7 @@ class Modal extends React.Component {
                 <img src={bookData.img_url} alt=""/>
                 <div dangerouslySetInnerHTML= {{__html: bookData.description}}/>
                 <p>{bookData.average_rating}</p>
+                <button onClick={() => this.state.onClose([])}>Close</button>
             </div>
         )
     }
