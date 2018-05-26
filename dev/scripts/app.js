@@ -166,11 +166,19 @@ class App extends React.Component {
             </form>
           </div>
         </header>
-        <GenreRes books={books} onBookSelect={selectedBook => this.setState(
-              { selectedBook }
-            )} />
-        {selectedBook.best_book !== undefined && <Modal bookID={selectedBook.best_book.id.$t} />}
-      </div>;
+        <GenreRes
+              books={books}
+              onBookSelect={selectedBook => this.setState({ selectedBook })}
+              // key={key}
+              // title={book.best_book.title}
+              // cover={book.best_book.image_url}
+            />
+        {selectedBook.best_book !== undefined && <Modal
+            bookID={selectedBook.best_book.id.$t}
+            onClose={selectedBook => this.setState({selectedBook})}
+             />}
+      </div>
+    );
   }
 }
 
