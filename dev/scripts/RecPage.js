@@ -28,37 +28,12 @@ class RecPage extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.saveToFirebase = this.saveToFirebase.bind(this);
     }
 
     handleChange(e) {
         this.setState({
         value: e.target.value
         });
-    }
-
-    saveToFirebase() {
-        // e.preventDefault();
-        if (this.state.bookToSave.best_book !== undefined) {
-        const savedBook = {
-            bookImage: this.state.bookToSave.best_book.image_url,
-            bookTitle: this.state.bookToSave.best_book.title,
-            bookAuthor: this.state.bookToSave.best_book.author.name,
-            read: false,
-            reading: false
-        };
-        const dbRef = firebase.database().ref();
-        dbRef.on("value", snapshot => {
-            console.log(snapshot.val());
-        });
-
-        dbRef.push(savedBook);
-        console.log(savedBook);
-
-        this.setState({
-            bookToSave: []
-        });
-        }
     }
 
     handleSubmit(e) {
@@ -110,52 +85,44 @@ class RecPage extends React.Component {
         });
     }
     render () {
-const { books, selectedBook } = this.state;
-// console.log(this.state.selectedBook);
-// console.log(books);
-        return (
-        <div>
-            <header>
-            <h1>What to Read</h1>
-            <div className="genre-select">
-                <form onSubmit={this.handleSubmit}>
-                <label htmlFor="genrePicker">I feel like reading </label>
-                <select
-                    name="selectGenre"
-                    id="genrePicker"
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                >
-                    <option value="fiction">Fiction</option>
-                    <option value="fantasy">Fantasy</option>
-                    <option value="non-fiction">Non-Fiction</option>
-                    <option value="science-fiction">Science Fiction</option>
-                    <option value="romance">Romance</option>
-                    <option value="thriller">Thriller</option>
-                    <option value="humor">Humor</option>
-                </select>
-                <input type="submit" />
-                </form>
-            </div>
-            </header>
-            <GenreRes
-            books={books}
-            onBookSelect={selectedBook => this.setState({ selectedBook })}
-            bookSave={bookToSave => this.setState({ bookToSave })}
-            saveToFirebase={this.saveToFirebase()}
-            // key={key}
-            bookSave={bookToSave => this.setState({ bookToSave })}
-            // title={book.best_book.title}
-            // cover={book.best_book.image_url}
-            />
-            {selectedBook.best_book !== undefined && (
-            <Modal
-                bookID={selectedBook.best_book.id.$t}
-                onClose={selectedBook => this.setState({ selectedBook })}
-            />
-            )}
-        </div>
-        );        
+        const { books, selectedBook } = this.state;
+            return (
+                <div>
+                    <header>
+                    <h1>What to Read</h1>
+                    <div className="genre-select">
+                        <form onSubmit={this.handleSubmit}>
+                        <label htmlFor="genrePicker">I feel like reading </label>
+                        <select
+                            name="selectGenre"
+                            id="genrePicker"
+                            value={this.state.value}
+                            onChange={this.handleChange}
+                        >
+                            <option value="fiction">Fiction</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="non-fiction">Non-Fiction</option>
+                            <option value="science-fiction">Science Fiction</option>
+                            <option value="romance">Romance</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="humor">Humor</option>
+                        </select>
+                        <input type="submit" />
+                        </form>
+                    </div>
+                    </header>
+                    <GenreRes
+                    books={books}
+                    onBookSelect={selectedBook => this.setState({ selectedBook })}
+                    />
+                    {selectedBook.best_book !== undefined && (
+                    <Modal
+                        bookID={selectedBook.best_book.id.$t}
+                        onClose={selectedBook => this.setState({ selectedBook })}
+                    />
+                    )}
+                </div>
+            );        
     }
 }
 
