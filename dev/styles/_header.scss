@@ -1,0 +1,29 @@
+header {
+    background: url(../../assets/header.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: fixed;
+    height: 90vh;
+    text-align: center;
+    select {
+        text-align: center;
+        text-transform: uppercase;
+        height: 39px ;
+        width: 100px;
+        letter-spacing: 2px;
+        border: 1px solid black;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: url('../images/down-arrow.png') no-repeat;
+        background-size: 7%;
+        background-position-x: 95%;
+        background-position-y: 50%;
+        border-radius: 0; 
+    option {
+        text-transform: uppercase;
+        margin: 20px;
+        border-radius: 0;
+        
+    }  
+}
+}

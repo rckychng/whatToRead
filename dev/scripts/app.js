@@ -46,8 +46,10 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Link to="/">Recommendations</Link>
-          <Link to="/SavedBooks">My Books</Link>
+          <div className="nav">
+            <Link to="/">Recommendations</Link>
+            <Link to="/SavedBooks">My Books</Link>
+          </div>
           <Route path="/" exact component={RecPage} />
           <Route path="/SavedBooks" exact component={SavedBooks}/>
         </div>
