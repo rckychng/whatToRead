@@ -11,7 +11,7 @@ const GenreRes = (props) => {
         <section className="results">
         {props.books.map((book) => {
             return (
-                <div key={book[0].best_book.id.$t} onClick={() => props.onBookSelect(book[0])}>
+                <div className="single-book" key={book[0].best_book.id.$t} onClick={() => props.onBookSelect(book[0])}>
                     <img src={book[0].best_book.image_url} alt="Book Cover"/>
                     <h2>{book[0].best_book.title}</h2>
                     <button onClick={() => props.bookSave(book[0])} className="add-to-shelf">Add to Shelf</button>
