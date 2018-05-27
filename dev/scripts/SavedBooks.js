@@ -8,7 +8,7 @@ class SavedBooks extends React.Component {
     constructor() {
         super();
         this.state = {
-            savedBooks: []
+            savedBooks: [],
         }
     }
     componentDidMount() {
@@ -20,11 +20,46 @@ class SavedBooks extends React.Component {
                 userData[bookKey].key = bookKey;
                 dataArray.push(userData[bookKey])
             }
-            console.log(dataArray);
+            // console.log(dataArray);
             this.setState({
                 savedBooks: dataArray
             })
         });
+    }
+    
+    currentlyReading(savedBookKey,isReading) {
+        // console.log(savedBookKey,isReading)
+        if (isReading === false) {
+            firebase.database().ref(savedBookKey)
+                .update({
+                    reading: true
+                });
+        } else if (isReading === true) {
+            firebase.database().ref(savedBookKey)
+                .update({
+                    reading: false
+                });
+        }
+    }
+
+    finishedReading(savedBookKey,hasRead) {
+        // console.log(savedBookKey,isReading)
+        if (hasRead === false) {
+            firebase.database().ref(savedBookKey)
+                .update({
+                    read: true
+                });
+        } else if (hasRead === true) {
+            firebase.database().ref(savedBookKey)
+                .update({
+                    read: false
+                });
+        }
+    }
+
+    removeSavedBook(savedBookKey) {
+        const dbref = firebase.database().ref(savedBookKey);
+        dbref.remove();
     }
     render() {
         return (
@@ -34,6 +69,9 @@ class SavedBooks extends React.Component {
                         <SavedData 
                             savedBook={savedBook} 
                             key={`savedBook-${savedKey}`}
+                            removeSavedBook={this.removeSavedBook}
+                            currentlyReading={this.currentlyReading}
+                            finishedReading={this.finishedReading}
                         />
                     )
                 })}
