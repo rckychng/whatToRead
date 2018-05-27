@@ -1,7 +1,35 @@
+body {
+    color: #444;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 h1 {
     font-family: $heading-one;
     text-transform: uppercase;
     font-size: 8rem;
+    text-align: center;
+    position: relative;
+    color: $golden-poppy;
+    z-index: 2;
+    padding: 20% 0;
+    margin: 0;
+}
+
+h1::before {
+    content: '';
+    position: absolute;
+    background: rgba( $deep-forest-green, .7 );
+    opacity: 10;
+    width: 100%;
+    left: 0;
+    height: 100px;
+    z-index: -1;
+    margin: 0 auto;
+
 }
 
 form {
