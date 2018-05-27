@@ -25,7 +25,7 @@ class RecPage extends React.Component {
             books: [],
             selectedBook: [],
             loggedIn: false,
-            index: 1
+            index: 0
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -88,7 +88,7 @@ class RecPage extends React.Component {
             //for displayed arrays when new data called
             this.setState({
                 books: completeBatch,
-                index: 1
+                index: 0
             });
         });
     }
