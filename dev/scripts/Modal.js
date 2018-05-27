@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from "axios";
 import qs from "qs";
+import firebase from 'firebase';
+import SimilarBooks from "./SimilarBooks";
 
 //id needs to be a variable
 //hook in selected book
@@ -25,9 +27,13 @@ class Modal extends React.Component {
             singleTitle: [],
             bookID: props.bookID,
             bookData: [],
-            onClose: props.onClose
+            onClose: props.onClose,
+            similarBooksDisplay: []
         }
+
+        this.saveToFirebase = this.saveToFirebase.bind(this);
     }
+
     componentDidMount () {
         axios({
         url: "http://proxy.hackeryou.com",
@@ -46,24 +52,51 @@ class Modal extends React.Component {
         }
         }).then((res) =>{
             const bookData = res.data.GoodreadsResponse.book;
+            const similarBooks = bookData.similar_books.book;
+
+            const similarBooksDisplay = similarBooks.slice(0, 5);
+
+            
 
             this.setState ({
-                bookData: bookData
+                bookData: bookData,
+                similarBooksDisplay: similarBooksDisplay
             });
         })
     }
 
+    saveToFirebase() {
+        const savedBook = {
+            bookImage: this.state.bookData.image_url,
+            bookTitle: this.state.bookData.title,
+            // bookAuthor: this.state.bookData.author.name,
+            read: false,
+            reading: false
+        };
+        const dbRef = firebase.database().ref();
+        dbRef.on("value", snapshot => {
+            console.log(snapshot.val());
+        });
+
+        dbRef.push(savedBook);
+        console.log(savedBook);
+    }
 
     render () {
-        const {bookData} = this.state;
-        // console.log(bookData);
+        const {bookData, similarBooksDisplay, bookID} = this.state;
+        console.log(bookData);
+        console.log(this.state.similarBooksDisplay);
         return (
             <div className="modal">
-                <h2>{bookData.title}</h2>
-                <img src={bookData.img_url} alt=""/>
-                <div dangerouslySetInnerHTML= {{__html: bookData.description}}/>
-                <p>{bookData.average_rating}</p>
                 <button onClick={() => this.state.onClose([])}>Close</button>
+                <h2>{bookData.title}</h2>
+                <img src={bookData.image_url} alt=""/>
+                <div dangerouslySetInnerHTML= {{__html: bookData.description}}/>
+                <p>Rating: {bookData.average_rating}/5</p>
+                <button onClick={this.saveToFirebase} className="add-to-shelf">Add to Shelf</button>
+                <SimilarBooks
+                    similarBooks={similarBooksDisplay} 
+                    />                
             </div>
         )
     }
