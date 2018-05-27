@@ -9,8 +9,8 @@ import React from 'react';
 const GenreRes = (props) => {
         return (
             <section className="results">
-            {props.index > 1 && <button onClick={() => props.pageBack()}>Previous Page</button>}
-            <button onClick={() => props.pageForward()}>Next Page</button>
+            {props.index > 0 && <button onClick={() => props.pageBack()}>Previous Page</button>}
+            {props.index < 9 && <button onClick={() => props.pageForward()}>Next Page</button>}
             {props.books.map((book) => {
                 return (
                     <div key={book[props.index].best_book.id.$t} onClick={() => props.onBookSelect(book[props.index])}>
