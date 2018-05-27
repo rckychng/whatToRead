@@ -6,13 +6,22 @@ import GenreRes from "./GenreRes";
 import Modal from "./Modal";
 import firebase from "firebase";
 
+// const config = {
+//   apiKey: "AIzaSyBkxhr4FMicWjtQin03JrWbbGVhe8mJgzM",
+//   authDomain: "whattoreadapp.firebaseapp.com",
+//   databaseURL: "https://whattoreadapp.firebaseio.com",
+//   projectId: "whattoreadapp",
+//   storageBucket: "whattoreadapp.appspot.com",
+//   messagingSenderId: "493854943854"
+// };
+
 const config = {
-  apiKey: "AIzaSyBkxhr4FMicWjtQin03JrWbbGVhe8mJgzM",
-  authDomain: "whattoreadapp.firebaseapp.com",
-  databaseURL: "https://whattoreadapp.firebaseio.com",
-  projectId: "whattoreadapp",
-  storageBucket: "whattoreadapp.appspot.com",
-  messagingSenderId: "493854943854"
+    apiKey: "AIzaSyAQuGlgtPVMYsf0cL_F-Vtr40cy9eCALLw",
+    authDomain: "whattoread-test.firebaseapp.com",
+    databaseURL: "https://whattoread-test.firebaseio.com",
+    projectId: "whattoread-test",
+    storageBucket: "whattoread-test.appspot.com",
+    messagingSenderId: "473210225413"
 };
 
 firebase.initializeApp(config);
