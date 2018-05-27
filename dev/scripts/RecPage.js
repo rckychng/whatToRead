@@ -110,8 +110,7 @@ class RecPage extends React.Component {
         });
     }
     render () {
-const { books } = this.state;
-const { selectedBook } = this.state;
+const { books, selectedBook } = this.state;
 // console.log(this.state.selectedBook);
 // console.log(books);
         return (
