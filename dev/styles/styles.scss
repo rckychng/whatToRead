@@ -10,3 +10,17 @@
 html {
     font-size: 62.5%;
 }
+
+body {
+    background: $scotch-mist;
+    .nav {
+        height: 10vh;
+        background: $golden-poppy;
+        text-align: right;
+    }
+}
+
+.wrapper {
+    max-width: 80%;
+    margin: 0 auto;
+}
