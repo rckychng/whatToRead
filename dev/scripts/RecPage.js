@@ -19,15 +19,19 @@ firebase.initializeApp(config);
 class RecPage extends React.Component {
     constructor() {
         super();
+
         this.state = {
-        value: "fiction",
-        books: [],
-        selectedBook: [],
-        loggedIn: false,
-        bookToSave: []
+            value: "fiction",
+            books: [],
+            selectedBook: [],
+            loggedIn: false,
+            index: 1
         };
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.pageForward = this.pageForward.bind(this);
+        this.pageBack = this.pageBack.bind(this);
     }
 
     handleChange(e) {
@@ -44,6 +48,7 @@ class RecPage extends React.Component {
         this.batchCall();
     }
 
+    //Loops through axios call in order to generate 100 results
     batchCall() {
         for (let i = 1; i <= 5; i++) {
         this.getBooksByGenre(i);
@@ -69,23 +74,42 @@ class RecPage extends React.Component {
             xmlToJSON: true
         }
         }).then(res => {
-        const genreResults = res.data.GoodreadsResponse.search.results.work;
-        // this.sortBookResults(genreResults);
-        const arrayA = genreResults.slice(0, 10);
-        const arrayB = genreResults.slice(10, 20);
+            const genreResults = res.data.GoodreadsResponse.search.results.work;
 
-        const completeBatch = Array.from(this.state.books);
-        completeBatch.push(arrayA, arrayB);
-        // console.log(completeBatch);
-        this.setState({
-            books: completeBatch
-        });
+            //Slices results into arrays of ten for display on the page 
+            //& pushes them into an array
+            const arrayA = genreResults.slice(0, 10);
+            const arrayB = genreResults.slice(10, 20);
 
-        // console.log(this.state.books);
+            const completeBatch = Array.from(this.state.books);
+            completeBatch.push(arrayA, arrayB);
+            
+            //Sets results to state and resets index position
+            //for displayed arrays when new data called
+            this.setState({
+                books: completeBatch,
+                index: 1
+            });
         });
     }
+
+    //Moves array index forward when next page button clicked
+    pageForward() {
+        this.setState({
+            index: this.state.index + 1
+        })
+    }
+
+    //Moves array index back when prev button clicked
+    //Error handling on render, button will not appear whe index < 1
+    pageBack() {
+        this.setState({
+            index: this.state.index - 1
+        })
+    }
+
     render () {
-        const { books, selectedBook } = this.state;
+        const { index, books, selectedBook } = this.state;
             return (
                 <div>
                     <header>
@@ -114,6 +138,9 @@ class RecPage extends React.Component {
                     <GenreRes
                     books={books}
                     onBookSelect={selectedBook => this.setState({ selectedBook })}
+                    index={index}
+                    pageForward={this.pageForward}
+                    pageBack={this.pageBack}
                     />
                     {selectedBook.best_book !== undefined && (
                     <Modal
