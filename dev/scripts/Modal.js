@@ -75,12 +75,12 @@ class Modal extends React.Component {
             reading: false
         };
         const addedBookID = this.state.bookID;
-        const dbRef = firebase.database().ref(`users/${this.state.userID}`);
+        const dbRef = firebase.database().ref(`users/${this.state.userID}/${addedBookID}`);
         dbRef.on("value", snapshot => {
             console.log(snapshot.val());
         });
 
-        dbRef.push(savedBook);
+        dbRef.set(savedBook);
         console.log(addedBookID);
     }
 
