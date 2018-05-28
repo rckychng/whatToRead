@@ -28,7 +28,8 @@ class Modal extends React.Component {
             bookID: props.bookID,
             bookData: [],
             onClose: props.onClose,
-            similarBooksDisplay: []
+            similarBooksDisplay: [],
+            userID: props.userID
         }
 
         this.saveToFirebase = this.saveToFirebase.bind(this);
@@ -73,13 +74,14 @@ class Modal extends React.Component {
             read: false,
             reading: false
         };
-        const dbRef = firebase.database().ref();
+        const addedBookID = this.state.bookID;
+        const dbRef = firebase.database().ref(`users/${this.state.userID}`);
         dbRef.on("value", snapshot => {
             console.log(snapshot.val());
         });
 
         dbRef.push(savedBook);
-        console.log(savedBook);
+        console.log(addedBookID);
     }
 
     render () {
