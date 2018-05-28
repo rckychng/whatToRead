@@ -16,6 +16,7 @@ const config = {
 };
 
 firebase.initializeApp(config);
+
 class RecPage extends React.Component {
     constructor() {
         super();
@@ -131,7 +132,7 @@ class RecPage extends React.Component {
                             <option value="thriller">Thriller</option>
                             <option value="humor">Humor</option>
                         </select>
-                        <input type="submit" />
+                        <input type="submit" value="Find Books"/>
                         </form>
                     </div>
                     </header>
