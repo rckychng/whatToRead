@@ -64,18 +64,21 @@ class App extends React.Component {
 
     firebase.auth().signInWithPopup(provider)
       .then((user) => {
+        console.log(user.user);
         if(user) {
-          const token = result.credential.accessToken;
-          const user = result.user;
-          const userID = result.user.uid;
-          // this.setState({
-          //   userID: userID
-          // });
-          console.log(this.state.userID);
-        }
-        else {
-
-        }
+          const token = user.credential.accessToken;
+          const user = user.user;
+          const userID = user.user.uid;
+          const userName = user.user.displayName;
+          this.setState({
+            userID: userID
+          })
+        } () => {
+          console.log('pushing', this.state.userID);
+          const userInfo = { userName: this.state.userName }
+          firebase.database().ref("users/" + this.state.userID)
+              .set(userInfo);
+          };
       })
       .catch(function(error) {
         console.log(error);
