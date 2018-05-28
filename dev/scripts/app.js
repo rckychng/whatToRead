@@ -93,7 +93,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="app-container">
           <div className="nav">
             {this.state.loggedIn === false && (
               <button onClick={this.loginWithGoogle}>Login</button>
