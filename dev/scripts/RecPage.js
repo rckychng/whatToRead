@@ -112,7 +112,7 @@ class RecPage extends React.Component {
     render () {
         const { index, books, selectedBook } = this.state;
             return (
-                <div>
+                <div className="app-container">
                     <header>
                     <h1>What to Read</h1>
                     <div className="genre-select">
@@ -136,19 +136,21 @@ class RecPage extends React.Component {
                         </form>
                     </div>
                     </header>
-                    <GenreRes
-                    books={books}
-                    onBookSelect={selectedBook => this.setState({ selectedBook })}
-                    index={index}
-                    pageForward={this.pageForward}
-                    pageBack={this.pageBack}
-                    />
-                    {selectedBook.best_book !== undefined && (
-                    <Modal
-                        bookID={selectedBook.best_book.id.$t}
-                        onClose={selectedBook => this.setState({ selectedBook })}
-                    />
-                    )}
+                    <div className="res-container">
+                        <GenreRes
+                        books={books}
+                        onBookSelect={selectedBook => this.setState({ selectedBook })}
+                        index={index}
+                        pageForward={this.pageForward}
+                        pageBack={this.pageBack}
+                        />
+                        {selectedBook.best_book !== undefined && (
+                        <Modal
+                            bookID={selectedBook.best_book.id.$t}
+                            onClose={selectedBook => this.setState({ selectedBook })}
+                        />
+                        )}
+                    </div>
                 </div>
             );        
     }
