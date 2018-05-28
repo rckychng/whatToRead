@@ -7,8 +7,8 @@ import Modal from "./Modal";
 import firebase from "firebase";
 
 class RecPage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             value: "fiction",
@@ -137,6 +137,7 @@ class RecPage extends React.Component {
                         <Modal
                             bookID={selectedBook.best_book.id.$t}
                             onClose={selectedBook => this.setState({ selectedBook })}
+                            userID={this.props.userID}
                         />
                         )}
                     </div>
