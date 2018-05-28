@@ -9,7 +9,6 @@ class SavedBooks extends React.Component {
         super(props);
         this.state = {
             savedBooks: [],
-            userID: props.userID
         }
     }
     componentDidMount() {
@@ -32,38 +31,38 @@ class SavedBooks extends React.Component {
         })
     }
     
-    currentlyReading(savedBookKey,isReading) {
+    currentlyReading(user,isReading) {
         // console.log(savedBookKey,isReading)
         if (isReading === false) {
-            firebase.database().ref(savedBookKey)
+            firebase.database().ref(users.uid)
                 .update({
                     reading: true
                 });
         } else if (isReading === true) {
-            firebase.database().ref(savedBookKey)
+            firebase.database().ref(users.uid)
                 .update({
                     reading: false
                 });
         }
     }
 
-    finishedReading(savedBookKey,hasRead) {
+    finishedReading(user,hasRead) {
         // console.log(savedBookKey,isReading)
         if (hasRead === false) {
-            firebase.database().ref(savedBookKey)
+            firebase.database().ref(users.uid)
                 .update({
                     read: true
                 });
         } else if (hasRead === true) {
-            firebase.database().ref(savedBookKey)
+            firebase.database().ref(users.uid)
                 .update({
                     read: false
                 });
         }
     }
 
-    removeSavedBook(savedBookKey) {
-        const dbref = firebase.database().ref(savedBookKey);
+    removeSavedBook(user) {
+        const dbref = firebase.database().ref(users.uid);
         dbref.remove();
     }
     render() {
