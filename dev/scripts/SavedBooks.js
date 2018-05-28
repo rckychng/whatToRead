@@ -63,18 +63,20 @@ class SavedBooks extends React.Component {
     }
     render() {
         return (
-            <div>
-                {this.state.savedBooks.map((savedBook,savedKey) => {
-                    return (
-                        <SavedData 
-                            savedBook={savedBook} 
-                            key={`savedBook-${savedKey}`}
-                            removeSavedBook={this.removeSavedBook}
-                            currentlyReading={this.currentlyReading}
-                            finishedReading={this.finishedReading}
-                        />
-                    )
-                })}
+            <div className="saved">
+                <div className="saved-section wrapper">
+                    {this.state.savedBooks.map((savedBook,savedKey) => {
+                        return (
+                            <SavedData 
+                                savedBook={savedBook} 
+                                key={`savedBook-${savedKey}`}
+                                removeSavedBook={this.removeSavedBook}
+                                currentlyReading={this.currentlyReading}
+                                finishedReading={this.finishedReading}
+                            />
+                        )
+                    })}
+                </div>
             </div>
         );
     }

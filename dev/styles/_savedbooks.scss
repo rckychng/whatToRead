@@ -1,3 +1,102 @@
+.saved {
+    height: 90vh;
+    position: relative;
+}
+
+.saved-section {
+    width: 100%;
+    height: 80vh;
+    background-color: $golden-poppy;
+    padding: 20px 50px;
+    overflow: scroll;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
 .saved-book {
-    
+    width: 100%;
+    margin-bottom: 40px;
+    position: relative;
+    &::before {
+        content: "";
+        border-bottom: 5px dotted $scotch-mist;
+        width: 100%;
+        display: block;
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
+    &:last-child::before {
+        content: "";
+        border-bottom: 0;
+    }
+    &__image-container {
+        width: 98px;
+        height: 153px;
+        float: left;
+        margin-right: 20px;
+    }
+    &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    &__text {
+        width: 50%;
+        float: left;
+        line-height: 153px;
+    }
+    &__title {
+        font-family: $heading-one;
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: normal;
+        vertical-align: middle;
+        display: inline-block;
+        margin: 0;
+    }
+    &__buttons {
+        width: 200px;
+        float: right;
+        line-height: 153px;
+    }
+    &__button-container {
+        display: inline-block;
+        line-height: normal;
+        vertical-align: middle;
+    }
+    &__button {
+        cursor: pointer;
+        line-height: 30px;
+        margin-bottom: 10px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &__icon {
+        font-size: 3rem;
+        color: $deep-forest-green;
+        display: inline-block;
+        float: left;
+        width: 30px;
+        margin-right: 5px;
+    }
+    &__icon--active {
+        color: $forest-green;
+    }
+    &__ongoing, &__finished, &__remove {
+        font-family: "Lato", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 400;
+        vertical-align: middle;
+        height: 30px; 
+        margin: 0;
+        float: left;          
+    }
 }
