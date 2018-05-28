@@ -35,12 +35,12 @@ class SavedBooks extends React.Component {
     currentlyReading(savedBookKey,isReading) {
         // console.log(savedBookKey,isReading)
         if (isReading === false) {
-            firebase.database().ref(savedBookKey)
+            firebase.database().ref(`users/${firebase.auth().currentUser.uid}/${savedBookKey}`)
                 .update({
                     reading: true
                 });
         } else if (isReading === true) {
-            firebase.database().ref(savedBookKey)
+            firebase.database().ref(`users/${firebase.auth().currentUser.uid}/${savedBookKey}`)
                 .update({
                     reading: false
                 });
@@ -50,12 +50,12 @@ class SavedBooks extends React.Component {
     finishedReading(savedBookKey,hasRead) {
         // console.log(savedBookKey,isReading)
         if (hasRead === false) {
-            firebase.database().ref(savedBookKey)
+            firebase.database().ref(`users/${firebase.auth().currentUser.uid}/${savedBookKey}`)
                 .update({
                     read: true
                 });
         } else if (hasRead === true) {
-            firebase.database().ref(savedBookKey)
+            firebase.database().ref(`users/${firebase.auth().currentUser.uid}/${savedBookKey}`)
                 .update({
                     read: false
                 });
@@ -63,7 +63,7 @@ class SavedBooks extends React.Component {
     }
 
     removeSavedBook(savedBookKey) {
-        const dbref = firebase.database().ref(savedBookKey);
+        const dbref = firebase.database().ref(`users/${firebase.auth().currentUser.uid}/${savedBookKey}`);
         dbref.remove();
     }
     render() {
@@ -71,7 +71,7 @@ class SavedBooks extends React.Component {
             <div className="saved">
                 <div className="saved-section wrapper">
                     {this.state.savedBooks.map((savedBook,savedKey) => {
-                        console.log(savedBook)
+                        // console.log(savedBook)
                         return (
                             <SavedData 
                                 savedBook={savedBook} 
