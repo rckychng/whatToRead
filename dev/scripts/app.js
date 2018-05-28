@@ -26,6 +26,15 @@ const config = {
   messagingSenderId: "493854943854"
 };
 
+// const config = {
+//   apiKey: "AIzaSyAQuGlgtPVMYsf0cL_F-Vtr40cy9eCALLw",
+//   authDomain: "whattoread-test.firebaseapp.com",
+//   databaseURL: "https://whattoread-test.firebaseio.com",
+//   projectId: "whattoread-test",
+//   storageBucket: "whattoread-test.appspot.com",
+//   messagingSenderId: "473210225413"
+// };
+
 firebase.initializeApp(config);
 
 class App extends React.Component {
@@ -65,9 +74,9 @@ class App extends React.Component {
     firebase.auth().signInWithPopup(provider)
       .then((user) => {
         if(user) {
-          const token = result.credential.accessToken;
-          const user = result.user;
-          const userID = result.user.uid;
+          const token = user.credential.accessToken;
+          const user = user.user;
+          const userID = user.user.uid;
           // this.setState({
           //   userID: userID
           // });

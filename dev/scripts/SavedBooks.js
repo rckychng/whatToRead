@@ -66,6 +66,7 @@ class SavedBooks extends React.Component {
             <div className="saved">
                 <div className="saved-section wrapper">
                     {this.state.savedBooks.map((savedBook,savedKey) => {
+                        console.log(savedBook)
                         return (
                             <SavedData 
                                 savedBook={savedBook} 
