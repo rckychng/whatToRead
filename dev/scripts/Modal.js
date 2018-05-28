@@ -88,7 +88,7 @@ class Modal extends React.Component {
         console.log(this.state.similarBooksDisplay);
         return (
             <div className="modal">
-                <button onClick={() => this.state.onClose([])}>Close</button>
+                <button className="close" onClick={() => this.state.onClose([])}>Close</button>
                 <h2>{bookData.title}</h2>
                 <img src={bookData.image_url} alt=""/>
                 <div dangerouslySetInnerHTML= {{__html: bookData.description}}/>
