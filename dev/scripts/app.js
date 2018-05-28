@@ -8,25 +8,8 @@ import {
   NavLink
 } from "react-router-dom";
 import SavedBooks from './SavedBooks';
-//PAGES TO LINK TO
-  //SIMILAR BOOKS: https://www.goodreads.com/book/similar/[id]
-  //BOOK PAGE: https://www.goodreads.com/book/show/[bestbook id]
-    //THIS IS A SEPARATE API CALL THAT WILL NEED TO BE MADE ONCE THE MODAL POPS UP.
+import firebase from 'firebase';
 
-
-//Genre picker 
-  //scroll through results 10 at a time
-  //make button to scroll through results
-
-
-    
-
-//More Info Modal
-  //On click of more info button, modal opens up with additional info about chosen book
-    //if nothing selected, do not render. If book selected, render based on selected book
-    //conditional rendering that passes information of selected through props?
-  // Display title, author, rating, pages, image & link to GoodReads page
-  //Display similar books (determine how we will return similar books), once again map an array of images
 
   //Saved books page/user authentication
     //Use react router to generate alternate page view
@@ -34,24 +17,90 @@ import SavedBooks from './SavedBooks';
     // each saved book has checkable 'reading' and 'read' options and delete book button
 
 
+const config = {
+  apiKey: "AIzaSyBkxhr4FMicWjtQin03JrWbbGVhe8mJgzM",
+  authDomain: "whattoreadapp.firebaseapp.com",
+  databaseURL: "https://whattoreadapp.firebaseio.com",
+  projectId: "whattoreadapp",
+  storageBucket: "whattoreadapp.appspot.com",
+  messagingSenderId: "493854943854"
+};
 
+firebase.initializeApp(config);
 
 class App extends React.Component {
-  
-  // sortBookResults(genreResults) {
+  constructor() {
+    super();
+    this.state = {
+      loggedIn: false,
+      userID: ''
+    };
+    this.logout = this.logout.bind(this);
+  }
+  componentDidMount() {
+    this.dbRef = firebase.database().ref();
 
-  // }
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user !== null) {
+        this.dbRef.on("value", snapshot => {
+          console.log(snapshot.val());
+        });
+        this.setState({ 
+          loggedIn: true,
+          userID: user.uid 
+        });
+      } else {
+        console.log("user logged out");
+        this.setState({ 
+          loggedIn: false,
+          userID: ''
+        });
+      }
+    });
+  }
 
+  loginWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider)
+      .then((user) => {
+        if(user) {
+          const token = result.credential.accessToken;
+          const user = result.user;
+          const userID = result.user.uid;
+          // this.setState({
+          //   userID: userID
+          // });
+          console.log(this.state.userID);
+        }
+        else {
+
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+  logout() {
+    firebase.auth().signOut();
+    this.dbRef.off("value");
+  }
   render() {
     return (
       <Router>
         <div>
           <div className="nav">
+            {this.state.loggedIn === false && (
+              <button onClick={this.loginWithGoogle}>Login</button>
+            )}
+            {this.state.loggedIn === true ? (
+              <button onClick={this.logout}>Logout</button>
+            ) : null}
             <Link to="/">Recommendations</Link>
             <Link to="/SavedBooks">My Books</Link>
           </div>
           <Route path="/" exact component={RecPage} />
-          <Route path="/SavedBooks" exact component={SavedBooks}/>
+          <Route path="/SavedBooks" exact component={SavedBooks} />
         </div>
       </Router>
     );
