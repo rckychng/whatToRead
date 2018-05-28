@@ -13,19 +13,23 @@ class SavedBooks extends React.Component {
         }
     }
     componentDidMount() {
-        firebase.database().ref(`users/${this.props.userID}`).on("value", (res) => {
-            // console.log(res.val())
-            const userData = res.val();
-            const dataArray = [];
-            for (let bookKey in userData) {
-                userData[bookKey].key = bookKey;
-                dataArray.push(userData[bookKey])
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                firebase.database().ref(`users/${user.uid}`).on("value", (res) => {
+                    // console.log(res.val())
+                    const userData = res.val();
+                    const dataArray = [];
+                    for (let bookKey in userData) {
+                        userData[bookKey].key = bookKey;
+                        dataArray.push(userData[bookKey])
+                    }
+                    // console.log(dataArray);
+                    this.setState({
+                        savedBooks: dataArray
+                    })
+                });
             }
-            // console.log(dataArray);
-            this.setState({
-                savedBooks: dataArray
-            })
-        });
+        })
     }
     
     currentlyReading(savedBookKey,isReading) {

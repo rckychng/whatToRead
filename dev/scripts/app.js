@@ -66,6 +66,7 @@ class App extends React.Component {
 
     firebase.auth().signInWithPopup(provider)
       .then((user) => {
+        console.log(user.user);
         if(user) {
           const token = user.credential.accessToken;
           const user = user.user;
