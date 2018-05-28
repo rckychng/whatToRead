@@ -44,7 +44,7 @@ class App extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user !== null) {
         this.dbRef.on("value", snapshot => {
-          console.log(snapshot.val());
+          // console.log(snapshot.val());
         });
         this.setState({ 
           loggedIn: true,
@@ -52,7 +52,7 @@ class App extends React.Component {
           userName: user.displayName
         });
       } else {
-        console.log("user logged out");
+        // console.log("user logged out");
         this.setState({ 
           loggedIn: false,
           userID: ''
@@ -108,7 +108,10 @@ class App extends React.Component {
             exact path="/"  
             render= {() => <RecPage userID={this.state.userID}/>}
           />
-          <Route path="/SavedBooks" exact component={SavedBooks} />
+          <Route 
+            exact path="/SavedBooks" 
+            render= { () => <SavedBooks userID ={this.state.userID} />}
+          />
         </div>
       </Router>
     );
