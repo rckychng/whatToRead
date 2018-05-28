@@ -17,8 +17,8 @@ import firebase from "firebase";
 
 // firebase.initializeApp(config);
 class RecPage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             value: "fiction",
@@ -131,7 +131,7 @@ class RecPage extends React.Component {
                             <option value="thriller">Thriller</option>
                             <option value="humor">Humor</option>
                         </select>
-                        <input type="submit" />
+                        <input type="submit" value="Find Books"/>
                         </form>
                     </div>
                     </header>
@@ -147,6 +147,7 @@ class RecPage extends React.Component {
                         <Modal
                             bookID={selectedBook.best_book.id.$t}
                             onClose={selectedBook => this.setState({ selectedBook })}
+                            userID={this.props.userID}
                         />
                         )}
                     </div>

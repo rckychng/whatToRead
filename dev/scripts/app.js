@@ -42,7 +42,8 @@ class App extends React.Component {
     super();
     this.state = {
       loggedIn: false,
-      userID: ''
+      userID: '',
+      userName: ''
     };
     this.logout = this.logout.bind(this);
   }
@@ -56,7 +57,8 @@ class App extends React.Component {
         });
         this.setState({ 
           loggedIn: true,
-          userID: user.uid 
+          userID: user.uid,
+          userName: user.displayName
         });
       } else {
         console.log("user logged out");
@@ -77,14 +79,15 @@ class App extends React.Component {
           const token = user.credential.accessToken;
           const user = user.user;
           const userID = user.user.uid;
-          // this.setState({
-          //   userID: userID
-          // });
-          console.log(this.state.userID);
+          const userName = user.user.displayName;
+          
+          // console.log(this.state.userID);
         }
-        else {
-
-        }
+      // }, () => {
+      //   const userInfo = {
+      //     userName: this.state.userName
+      //   }
+      //   firebase.database().ref('users/' + this.state.userId).set(userInfo);
       })
       .catch(function(error) {
         console.log(error);
@@ -94,6 +97,7 @@ class App extends React.Component {
     firebase.auth().signOut();
     this.dbRef.off("value");
   }
+
   render() {
     return (
       <Router>
@@ -108,7 +112,10 @@ class App extends React.Component {
             <Link to="/">Recommendations</Link>
             <Link to="/SavedBooks">My Books</Link>
           </div>
-          <Route path="/" exact component={RecPage} />
+          <Route 
+            exact path="/"  
+            render= {() => <RecPage userID={this.state.userID}/>}
+          />
           <Route path="/SavedBooks" exact component={SavedBooks} />
         </div>
       </Router>
