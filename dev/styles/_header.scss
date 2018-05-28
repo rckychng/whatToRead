@@ -2,28 +2,39 @@ header {
     background: url(../../assets/header.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: fixed;
+    background-attachment: fixed;
     height: 90vh;
     text-align: center;
-    select {
-        text-align: center;
-        text-transform: uppercase;
-        height: 39px ;
-        width: 100px;
-        letter-spacing: 2px;
-        border: 1px solid black;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background: url('../images/down-arrow.png') no-repeat;
-        background-size: 7%;
-        background-position-x: 95%;
-        background-position-y: 50%;
-        border-radius: 0; 
-    option {
-        text-transform: uppercase;
-        margin: 20px;
-        border-radius: 0;
-        
-    }  
+    vertical-align: center;
+    text-transform: uppercase;
+    form {
+        select, input {
+            color: $deep-forest-green;
+            border: 1px solid $deep-forest-green;
+            height: 39px ;
+            width: 150px;
+            text-align: center;
+            text-transform: uppercase;
+            vertical-align: text-bottom;
+            letter-spacing: 2px;
+            margin: 0 10px;
+        }
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-left: 20px;
+            width: 250px;
+            background: url('../../assets/down-arrow.svg') no-repeat;
+            background-size: 13%;
+            background-position-x: 95%;
+            // background-position-y: 100%;
+            border-radius: 0; 
+        option {
+            text-transform: uppercase;
+            margin: 20px;
+            border-radius: 0;
+            
+        }  
+    }
 }
 }
