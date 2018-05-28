@@ -26,15 +26,6 @@ const config = {
   messagingSenderId: "493854943854"
 };
 
-// const config = {
-//   apiKey: "AIzaSyAQuGlgtPVMYsf0cL_F-Vtr40cy9eCALLw",
-//   authDomain: "whattoread-test.firebaseapp.com",
-//   databaseURL: "https://whattoread-test.firebaseio.com",
-//   projectId: "whattoread-test",
-//   storageBucket: "whattoread-test.appspot.com",
-//   messagingSenderId: "473210225413"
-// };
-
 firebase.initializeApp(config);
 
 class App extends React.Component {
@@ -53,7 +44,7 @@ class App extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user !== null) {
         this.dbRef.on("value", snapshot => {
-          console.log(snapshot.val());
+          // console.log(snapshot.val());
         });
         this.setState({ 
           loggedIn: true,
@@ -61,7 +52,7 @@ class App extends React.Component {
           userName: user.displayName
         });
       } else {
-        console.log("user logged out");
+        // console.log("user logged out");
         this.setState({ 
           loggedIn: false,
           userID: ''

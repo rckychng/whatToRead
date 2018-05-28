@@ -5,14 +5,15 @@ import firebase from "firebase";
 import SavedData from "./SavedData.js"
 
 class SavedBooks extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             savedBooks: [],
+            userID: props.userID
         }
     }
     componentDidMount() {
-        firebase.database().ref().on("value", (res) => {
+        firebase.database().ref(`users/${this.props.userID}`).on("value", (res) => {
             // console.log(res.val())
             const userData = res.val();
             const dataArray = [];
