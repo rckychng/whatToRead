@@ -3,7 +3,7 @@
 @import 'typography';
 @import 'header';
 @import 'results';
-@import 'details';
+@import 'modal';
 
 //GLOBAL STYLES
 
@@ -11,12 +11,26 @@ html {
     font-size: 62.5%;
 }
 
+button {
+    color: $deep-forest-green;
+    border: 1px solid $deep-forest-green;
+    height: 39px ;
+    width: 150px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: text-bottom;
+    letter-spacing: 2px;
+    margin: 0 10px;
+}
+
 body {
     background: $scotch-mist;
+    color: $deep-forest-green;
     .nav {
         height: 10vh;
         background: $golden-poppy;
         text-align: right;
+
     }
 }
 
