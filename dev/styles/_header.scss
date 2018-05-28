@@ -1,16 +1,23 @@
 header {
-    background: url(../../assets/header.jpg);
+    background: linear-gradient(to bottom, rgba($deep-forest-green,0.5), rgba($deep-forest-green,0.5)),url(../../assets/header.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    height: 90vh;
+    height: 100vh;
     text-align: center;
     vertical-align: center;
     text-transform: uppercase;
     form {
+        height: 39px;
+        label {
+            line-height: 39px;
+            font-size: 2rem;
+        }
+        select, label {
+            color: $scotch-mist;
+        }
         select, input {
-            color: $deep-forest-green;
-            border: 1px solid $deep-forest-green;
+            border: 1px solid $scotch-mist;
             height: 39px ;
             width: 150px;
             text-align: center;
@@ -27,7 +34,7 @@ header {
             background: url('../../assets/down-arrow.svg') no-repeat;
             background-size: 13%;
             background-position-x: 95%;
-            // background-position-y: 100%;
+            background-position-y: -100%;
             border-radius: 0; 
         option {
             text-transform: uppercase;

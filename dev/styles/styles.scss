@@ -3,14 +3,12 @@
 @import 'typography';
 @import 'header';
 @import 'results';
-<<<<<<< HEAD
-// @import 'details';
-=======
->>>>>>> c9f941c83dada1ba62b951483394e0476c2753aa
 @import 'savedbooks';
 @import 'modal';
 
 //GLOBAL STYLES
+
+//GET LIT.. USE THE LIGHTBULB IN THE NOUN PROJECT
 
 html {
     font-size: 62.5%;
@@ -31,11 +29,15 @@ button {
 body {
     background: $scotch-mist;
     color: $deep-forest-green;
-    .nav {
-        height: 10vh;
-        background: $golden-poppy;
-        text-align: right;
-
+    .app-container {
+        position: relative;
+        .nav {
+            text-align: right;
+            position: absolute;
+            z-index: 12;
+            right: 0;
+            color: $scotch-mist;
+        }
     }
 }
 
