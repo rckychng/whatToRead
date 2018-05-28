@@ -116,7 +116,10 @@ class App extends React.Component {
             exact path="/"  
             render= {() => <RecPage userID={this.state.userID}/>}
           />
-          <Route path="/SavedBooks" exact component={SavedBooks} />
+          <Route 
+            exact path="/SavedBooks" 
+            render= { () => <SavedBooks userID ={this.state.userID} />}
+          />
         </div>
       </Router>
     );
