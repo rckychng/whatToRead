@@ -11,7 +11,8 @@ header {
         height: 39px;
         label {
             vertical-align: 10px;
-            font-size: 2rem;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
         }
         select, label, input {
             color: $scotch-mist;

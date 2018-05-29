@@ -91,7 +91,8 @@
     border-radius: 50%;
     background: $forest-green;
     border: transparent; 
-    position: absolute;   
+    position: absolute; 
+    transition:0.3s;  
     img {
       width: 30px;
       object-fit: cover;
@@ -110,7 +111,9 @@
     top:50%;
     transform: translateY(-50%);
   }
-
+  .next-page:hover,.previous-page:hover {
+    background: $deep-forest-green;
+  }
   .gallery {
     background: $golden-poppy;
     width: 80%;
@@ -194,10 +197,3 @@
     }
   }
 }
-// @media (max-width: 428px) {
-//   .results {
-//     .gallery {
-
-//     }
-//   }
-// }
