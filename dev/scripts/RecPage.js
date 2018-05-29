@@ -135,22 +135,24 @@ class RecPage extends React.Component {
                         </form>
                     </div>
                     </header>
-                        {books.length > 0 && <GenreRes
-                        books={books}
-                        onBookSelect={selectedBook => this.setState({ selectedBook })}
-                        index={index}
-                        pageForward={this.pageForward}
-                        pageBack={this.pageBack}
-                        />}
-                        {selectedBook.best_book !== undefined && (
-                        <Modal
-                            bookID={selectedBook.best_book.id.$t}
-                            onClose={selectedBook => this.setState({ selectedBook })}
-                            userID={this.props.userID}
-                            loggedIn={this.props.loggedIn}
-                            login={this.props.login}
-                        />
-                        )}
+                        <div className="result-modal-container">
+                            {books.length > 0 && <GenreRes
+                            books={books}
+                            onBookSelect={selectedBook => this.setState({ selectedBook })}
+                            index={index}
+                            pageForward={this.pageForward}
+                            pageBack={this.pageBack}
+                            />}
+                            {selectedBook.best_book !== undefined && (
+                            <Modal
+                                bookID={selectedBook.best_book.id.$t}
+                                onClose={selectedBook => this.setState({ selectedBook })}
+                                userID={this.props.userID}
+                                loggedIn={this.props.loggedIn}
+                                login={this.props.login}
+                            />
+                            )}
+                        </div>
                 </div>
             );        
     }
