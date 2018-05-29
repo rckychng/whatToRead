@@ -36,6 +36,8 @@ h2 {
     color: $deep-forest-green;
 }
 
+
+
 .results h3 {
     font-family: $body-text;
     font-size: 1.6rem;
@@ -45,4 +47,10 @@ h2 {
 form {
     font-family: $body-text;
     font-size: 1.6rem;
+}
+
+@media (max-width: 381px) {
+    h1 {
+        line-height: 0.9;
+    }
 }

@@ -72,14 +72,14 @@
   min-height: 100vh;
   position: relative;
   .emblem-container {
-    box-shadow: 0 0 20px $forest-green;
+    box-shadow: 0 0 20px $deep-forest-green;
     position: absolute;
     top: -15px;
     transform: rotateZ(45deg) translateX(-50%);
     transform-origin: 0%;
     position: absolute;
     left: 50%;
-    background: $forest-green;
+    background: $deep-forest-green;
     .emblem {
       transform: rotate(-45deg);
       width: 100px;
@@ -89,7 +89,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: $forest-green;
+    background: $deep-forest-green;
     border: transparent; 
     position: absolute; 
     transition:0.3s;  
@@ -112,7 +112,7 @@
     transform: translateY(-50%);
   }
   .next-page:hover,.previous-page:hover {
-    background: $deep-forest-green;
+    background: $forest-green;
   }
   .gallery {
     background: $golden-poppy;
