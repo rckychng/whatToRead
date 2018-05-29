@@ -135,7 +135,6 @@ class RecPage extends React.Component {
                         </form>
                     </div>
                     </header>
-                    <div className="res-container">
                         {books.length > 0 && <GenreRes
                         books={books}
                         onBookSelect={selectedBook => this.setState({ selectedBook })}
@@ -152,7 +151,6 @@ class RecPage extends React.Component {
                             login={this.props.login}
                         />
                         )}
-                    </div>
                 </div>
             );        
     }
