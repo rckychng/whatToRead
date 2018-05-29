@@ -36,7 +36,31 @@ body {
             position: absolute;
             z-index: 12;
             right: 0;
+            top: 10px;
             color: $scotch-mist;
+            text-transform: uppercase;
+            height: 36px;
+            .nav-links {
+                vertical-align: 101%;
+                padding: 12px 10px;
+                border: 1px solid transparent;
+                margin-left: 15px;
+                margin-right: 15px;
+                display: inline-block;
+                letter-spacing: 2px;
+                text-align: center;
+                transition: 0.3s;
+            }
+            button {
+                background: transparent;
+                color: $scotch-mist;
+                transition: 0.3s;
+                border: transparent;
+            }
+            .nav-links:hover,
+            button:hover {
+                border: 1px solid $scotch-mist;
+            }
         }
     }
 }
