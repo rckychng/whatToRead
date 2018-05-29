@@ -29,9 +29,11 @@ class Modal extends React.Component {
             bookData: [],
             onClose: props.onClose,
             similarBooksDisplay: [],
-            userID: props.userID
+            authors: [],
+            authorName: ""
+            // userID: props.userID
         }
-
+        this.authorDisplay = this.authorDisplay.bind(this);
         this.saveToFirebase = this.saveToFirebase.bind(this);
     }
 
@@ -53,18 +55,39 @@ class Modal extends React.Component {
         }
         }).then((res) =>{
             const bookData = res.data.GoodreadsResponse.book;
+            const authors = bookData.authors.author;
             const similarBooks = bookData.similar_books.book;
 
             const similarBooksDisplay = similarBooks.slice(0, 5);
 
-            
+           
+    
+            // console.log(authors[0].name);
 
             this.setState ({
                 bookData: bookData,
-                similarBooksDisplay: similarBooksDisplay
+                similarBooksDisplay: similarBooksDisplay,
+                authors: authors
             });
+
+            this.authorDisplay();
         })
     }
+
+    authorDisplay() {
+        if (Array.isArray(this.state.authors)) {
+            this.setState ({
+                authorName: this.state.authors[0].name
+            })
+            console.log(this.state.authors[0].name);
+        } else {
+            this.setState ({
+                authorName: this.state.authors.name
+            })
+            console.log(this.state.authors.name);
+        }
+    }
+
 
     saveToFirebase() {
         const savedBook = {
@@ -75,7 +98,7 @@ class Modal extends React.Component {
             reading: false
         };
         const addedBookID = this.state.bookID;
-        const dbRef = firebase.database().ref(`users/${this.state.userID}/${addedBookID}`);
+        const dbRef = firebase.database().ref(`users/${this.props.userID}/${addedBookID}`);
         dbRef.on("value", snapshot => {
             console.log(snapshot.val());
         });
@@ -85,17 +108,20 @@ class Modal extends React.Component {
     }
 
     render () {
-        const {bookData, similarBooksDisplay, bookID} = this.state;
+        const {bookData, similarBooksDisplay, bookID, authorName} = this.state;
         console.log(bookData);
         console.log(this.state.similarBooksDisplay);
         return (
             <div className="modal">
                 <button className="close" onClick={() => this.state.onClose([])}>Close</button>
                 <h2>{bookData.title}</h2>
+                <h3>by {authorName}</h3>
                 <img src={bookData.image_url} alt=""/>
                 <div dangerouslySetInnerHTML= {{__html: bookData.description}}/>
+                <p>Pages: {bookData.num_pages}</p>
                 <p>Rating: {bookData.average_rating}/5</p>
-                <button onClick={this.saveToFirebase} className="add-to-shelf">Add to Shelf</button>
+                <a href={bookData.link} target='_blank'>See on Goodreads</a>
+                {this.props.loggedIn === true ? <button onClick={this.saveToFirebase} className="add-to-shelf">Add to Shelf</button> : <button onClick={this.props.login}>Login to save book</button>}
                 <SimilarBooks
                     similarBooks={similarBooksDisplay} 
                     />                

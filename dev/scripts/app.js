@@ -102,16 +102,17 @@ class App extends React.Component {
               <button onClick={this.logout}>Logout</button>
             ) : null}
             <Link to="/">Recommendations</Link>
-            <Link to="/SavedBooks">My Books</Link>
+            {this.state.loggedIn === true && ( 
+              <Link to="/SavedBooks">My Books</Link>
+            )}
           </div>
           <Route 
             exact path="/"  
-            render= {() => <RecPage userID={this.state.userID}/>}
+            render= {() => <RecPage userID={this.state.userID} loggedIn={this.state.loggedIn} login={this.loginWithGoogle}/>}
           />
           <Route 
-            exact path="/SavedBooks" 
-            render= { () => <SavedBooks userID ={this.state.userID} />}
-          />
+            path="/SavedBooks" 
+            component ={SavedBooks} />
         </div>
       </Router>
     );
