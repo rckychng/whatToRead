@@ -64,6 +64,7 @@
         vertical-align: middle;
         display: inline-block;
         margin: 0;
+        text-align: left;
     }
     &__buttons {
         width: 200px;
@@ -184,9 +185,10 @@
                 float: none;
                 clear: both;
                 width: 100%;
-                text-align: center;
                 line-height: 1.6;
+                text-align: center;
                 .saved-book__title {
+                    text-align: center;
                     font-size: 1.6rem;
                 }
             }
