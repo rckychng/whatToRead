@@ -94,6 +94,7 @@ class RecPage extends React.Component {
     }
 
     //Moves array index forward when next page button clicked
+    //Error handling on render, button will not appear when index > 9
     pageForward() {
         this.setState({
             index: this.state.index + 1
@@ -136,18 +137,20 @@ class RecPage extends React.Component {
                     </div>
                     </header>
                     <div className="res-container">
-                        <GenreRes
+                        {books.length > 0 && <GenreRes
                         books={books}
                         onBookSelect={selectedBook => this.setState({ selectedBook })}
                         index={index}
                         pageForward={this.pageForward}
                         pageBack={this.pageBack}
-                        />
+                        />}
                         {selectedBook.best_book !== undefined && (
                         <Modal
                             bookID={selectedBook.best_book.id.$t}
                             onClose={selectedBook => this.setState({ selectedBook })}
                             userID={this.props.userID}
+                            loggedIn={this.props.loggedIn}
+                            login={this.props.login}
                         />
                         )}
                     </div>

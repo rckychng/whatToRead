@@ -6,27 +6,38 @@ import React from 'react';
     //author
 
 
-const GenreRes = (props) => {
-        return (
-            <section className="results">
-                <div className="back-forth">
-                    {props.index > 0 && <button className="previous-page" onClick={() => props.pageBack()}><img src="../assets/arrow.svg"/></button>}
-                    {props.index < 9 && props.books.length > 0 ? <button className="next-page" onClick={() => props.pageForward()}><img src="../assets/arrow.svg"/></button> : null}
-                </div>
-                <div className="gallery clearfix">
-                    {props.books.map((book) => {
-                        return (
-                            <div className="title-gallery" key={book[props.index].best_book.id.$t} onClick={() => props.onBookSelect(book[props.index])}>
-                                <div className="cover-container">
-                                    <img src={book[props.index].best_book.image_url} alt="Book Cover"/>
-                                </div>
-                                <h2>{book[props.index].best_book.title}</h2>
-                            </div>
-                        )
-                    })}  
-                </div>
-            </section>  
+class GenreRes extends React.Component {
+    constructor(props) {
+        super(props);
+    
+    }
+
+    componentDidMount() {
+        this.results.scrollIntoView({behavior: "smooth"});
+    }
+
+    render () {
+    return (
+        <section ref ={node => this.results = node} className="results">
+            <div className="back-forth">
+                {this.props.index > 0 && <button className="previous-page" onClick={() => this.props.pageBack()}> <img src="../assets/arrow.svg" alt="arrow"/> </button>}
+                {this.props.index < 9 && this.props.books.length > 0 ? <button className="next-page" onClick={() => this.props.pageForward()}><img src="../assets/arrow.svg" alt="arrow"/></button> : null}
+            </div>
+            <div className="gallery clearfix">
+                {this.props.books.map((book) => {
+                    return (
+                        <div className="title-gallery" key={book[this.props.index].best_book.id.$t} onClick={() => this.props.onBookSelect(book[this.props.index])}>
+                        <div className="cover-container">
+                            <img src={book[this.props.index].best_book.image_url} alt="Book Cover"/>
+                        </div>
+                            <h2>{book[this.props.index].best_book.title}</h2>
+                        </div>
+                    )
+                })}  
+            </div>
+        </section>  
         )
     }   
+}
 
 export default GenreRes;
