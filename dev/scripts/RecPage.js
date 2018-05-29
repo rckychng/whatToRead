@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from "axios";
 import qs from "qs";
-import Genrepicker from "./Genrepicker";
 import GenreRes from "./GenreRes";
 import Modal from "./Modal";
 import firebase from "firebase";
