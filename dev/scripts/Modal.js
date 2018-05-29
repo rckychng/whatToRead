@@ -118,7 +118,7 @@ class Modal extends React.Component {
                         <div className="modal__image-container">
                             <img className="modal__image" src={bookData.image_url} alt="Book Cover"/>
                         </div>
-                        {this.props.loggedIn === true ? <button className="modal__save-button" onClick={this.saveToFirebase} className="add-to-shelf">Add to Shelf</button> : <button className="modal__save-button" onClick={this.props.login}>Login to save book</button>}
+                        {this.props.loggedIn === true ? <button className="modal__save-button" onClick={this.saveToFirebase}>Add to Shelf</button> : <button className="modal__save-button" onClick={this.props.login}>Login to save book</button>}
                     </div>
                     <div className="modal__text">
                         <p className="modal__description" dangerouslySetInnerHTML={{__html: bookData.description}}></p>
