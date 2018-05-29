@@ -8,9 +8,8 @@ const SimilarBooks = (props) => {
                     return (
                         <div className="similar-books__book">
                             <div className="similar-books__image-container" key={book.isbn}>
-                                {book.image_url.includes("nophoto") ? <p className="no-photo">{book.title}</p> : <img className="similar-books__image" src={book.image_url} alt="Book cover"/>}
+                                {book.image_url.includes("nophoto") ? <div className="similar-books__no-photo"><p className="similar-books__no-photo-text">{book.title}</p></div> : <img className="similar-books__image" src={book.image_url} alt="Book cover"/>}
                             </div>
-                            <h3 className="similar-books__title">{book.title}</h3>
                         </div>
                     )
                 })}
