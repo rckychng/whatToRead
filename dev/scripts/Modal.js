@@ -60,10 +60,6 @@ class Modal extends React.Component {
 
             const similarBooksDisplay = similarBooks.slice(0, 5);
 
-           
-    
-            // console.log(authors[0].name);
-
             this.setState ({
                 bookData: bookData,
                 similarBooksDisplay: similarBooksDisplay,
@@ -74,17 +70,16 @@ class Modal extends React.Component {
         })
     }
 
+    // If multiple authors, pulls main author from array, else pulls single author.
     authorDisplay() {
         if (Array.isArray(this.state.authors)) {
             this.setState ({
                 authorName: this.state.authors[0].name
-            })
-            console.log(this.state.authors[0].name);
+            });
         } else {
             this.setState ({
                 authorName: this.state.authors.name
-            })
-            console.log(this.state.authors.name);
+            });
         }
     }
 

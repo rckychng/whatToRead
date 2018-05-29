@@ -94,6 +94,7 @@ class RecPage extends React.Component {
     }
 
     //Moves array index forward when next page button clicked
+    //Error handling on render, button will not appear when index > 9
     pageForward() {
         this.setState({
             index: this.state.index + 1
