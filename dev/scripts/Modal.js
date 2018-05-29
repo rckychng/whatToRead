@@ -112,19 +112,24 @@ class Modal extends React.Component {
                     <i className="fa fa-times modal__close-icon"></i>
                 </div>
                 <h2 className="modal__title">{bookData.title}</h2>
-                <h3>by {authorName}</h3>
+                <div className="modal__author-page clearfix">
+                    <h3 className="modal__author">by {authorName}</h3>
+                    <p className="modal__page-number">Pages: {bookData.num_pages}</p>
+                </div>
                 <div className="modal__details clearfix">
-                    <div className="modal__image-button">
+                    <div className="modal__image-button clearfix">
                         <div className="modal__image-container">
                             <img className="modal__image" src={bookData.image_url} alt="Book Cover"/>
                         </div>
                         {this.props.loggedIn === true ? <button className="modal__save-button" onClick={this.saveToFirebase}>Add to Shelf</button> : <button className="modal__save-button" onClick={this.props.login}>Login to save book</button>}
+                        <div className="modal__rating">
+                            <p className="modal__rating-text">Rating:</p>
+                            <p className="modal__score">{bookData.average_rating}/5</p>
+                        </div>
                     </div>
                     <div className="modal__text">
                         <p className="modal__description" dangerouslySetInnerHTML={{__html: bookData.description}}></p>
-                        <p>Pages: {bookData.num_pages}</p>
-                        <p className="modal__rating">Rating: {bookData.average_rating}/5</p>
-                        <a href={bookData.link} target='_blank'>See on Goodreads</a>
+                        <a className="modal__link" href={bookData.link} target='_blank'>View book on Goodreads</a>
                     </div>
                 </div>
 
