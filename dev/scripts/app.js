@@ -101,9 +101,9 @@ class App extends React.Component {
             {this.state.loggedIn === true ? (
               <button onClick={this.logout}>Logout</button>
             ) : null}
-            <Link to="/">Recommendations</Link>
+            <Link to="/" className="nav-links">Recommendations</Link>
             {this.state.loggedIn === true && ( 
-              <Link to="/SavedBooks">My Books</Link>
+              <Link to="/SavedBooks" className="nav-links" >My Books</Link>
             )}
           </div>
           <Route 
