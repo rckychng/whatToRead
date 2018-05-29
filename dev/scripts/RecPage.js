@@ -113,7 +113,7 @@ class RecPage extends React.Component {
             return (
                 <div className="app-container">
                     <header>
-                    <h1>G<img src="../assets/e-icon.svg"/>t Lit</h1>
+                    <h1>G<img src="../assets/e-icon.svg"/>t Lit!</h1>
                     <div className="genre-select">
                         <form onSubmit={this.handleSubmit}>
                         <label htmlFor="genrePicker">I feel like reading </label>
