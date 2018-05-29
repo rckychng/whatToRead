@@ -19,11 +19,6 @@ class GenreRes extends React.Component {
     render () {
     return (
         <section ref ={node => this.results = node} className="results">
-
-            <div className="back-forth">
-                {this.props.index > 0 && <button className="previous-page" onClick={() => this.props.pageBack()}> <img src="../assets/arrow.svg" alt="arrow"/> </button>}
-                {this.props.index < 9 && this.props.books.length > 0 ? <button className="next-page" onClick={() => this.props.pageForward()}><img src="../assets/arrow.svg" alt="arrow"/></button> : null}
-            </div>
             <div className="gallery clearfix">
                 <div className="emblem-container">
                     <img className="emblem" src="../assets/icon2.svg" alt="icon of person reading"/>
@@ -39,6 +34,10 @@ class GenreRes extends React.Component {
                         </div>
                     )
                 })}  
+            </div>
+            <div className="back-forth">
+                {this.props.index > 0 && <button className="previous-page" onClick={() => this.props.pageBack()}> <img src="../assets/arrow.svg" alt="arrow"/> </button>}
+                {this.props.index < 9 && this.props.books.length > 0 ? <button className="next-page" onClick={() => this.props.pageForward()}><img src="../assets/arrow.svg" alt="arrow"/></button> : null}
             </div>
         </section>  
         )
