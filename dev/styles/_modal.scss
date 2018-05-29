@@ -31,7 +31,7 @@
 
 .modal {
     width: 80%;
-    height: 85%;
+    height: 85vh;
     background-color: $golden-poppy;
     padding: 50px;
     overflow: scroll;
@@ -45,6 +45,7 @@
         position: fixed;
         top: 10px;
         right: 15px;
+        cursor: pointer;
     }
     &__close-icon {
         font-size: 3rem;
@@ -52,17 +53,44 @@
     &__title {
         font-family: $heading-one;
         font-size: 3rem;
+        text-transform: uppercase;
         margin: 0;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        letter-spacing: 1.5px;
+        text-align: left;
+    }
+    &__author {
+        font-family: $heading-one;
+        font-size: 2rem;
+        margin: 0;
+        margin-bottom: 25px;
+        display: block;
+        width: 50%;
+        float: left;
+    }
+    &__page-number {
+        font-family: $body-text;
+        font-weight: 400;
+        font-size: 1.8rem;
+        display: block;
+        width: 50%;
+        float: right;
+        text-align: right;
+        margin: 0;
+    }
+    &__details {
+        width: 100%;
+        margin-bottom: 60px;
     }
     &__image-button {
+        width: 20%;
         float: left;
-        margin-right: 20px;
     }
     &__image-container {
-        width: 98px;
-        height: 153px;
-        margin-bottom: 15px;
+        max-width: 150px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
     }
     &__image {
         display: block;
@@ -71,11 +99,21 @@
         object-fit: cover top;
     }
     &__save-button {
-        width: 98px;
+        font-family: $body-text;
+        font-weight: 400;
+        max-width: 150px;
+        width: 100%;
         margin: 0;
+        margin-bottom: 20px;
+        &:hover {
+            background-color: $forest-green;
+            color: $scotch-mist;
+            border: 1px solid $scotch-mist;
+        }
     }
     &__text {
-        margin-bottom: 50px;
+        float: right;
+        width: 80%;
     }
     &__description {
         font-family: $body-text;
@@ -83,11 +121,35 @@
         font-size: 1.8rem;
         line-height: 1.4;
         text-align: justify;
+        margin: 0;
+        margin-bottom: 15px;
     }
     &__rating {
+        max-width: 150px;
+        width: 100%;
+    }
+    &__rating-text {
         font-family: $body-text;
         font-weight: 400;
         font-size: 2rem;
+        text-align: center;
+        margin: 0;
+    }
+    &__score {
+        font-family: $body-text;
+        font-weight: 400;
+        font-size: 3.6rem;
+        text-align: center;
+        margin: 0;
+    }
+    &__link {
+        font-family: $body-text;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 2.2rem;
+        &:hover {
+            color: $forest-green;
+        }
     }
 }
 
@@ -100,14 +162,16 @@
         width: 100%;
         display: block;
         position: absolute;
-        top: -25px;
+        top: -30px;
         left: 0;
     }
     &__subtitle {
         font-family: $heading-one;
-        font-size: 2rem;
+        font-size: 2.4rem;
         margin: 0;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        letter-spacing: 1.5px;
+        text-align: left;
     }
     &__book {
         width: 20%;
@@ -116,6 +180,9 @@
     &__image-container {
         width: 98px;
         height: 153px;
+        display: block;
+        margin: 0 auto 15px auto;
+
     }
     &__image {
         display: block;
@@ -123,4 +190,74 @@
         height: 100%;
         object-fit: cover;
     }
+    &__title {
+        font-family: $body-text;
+        font-weight: 400;
+        font-size: 1.4rem;
+        text-align: center;
+        letter-spacing: 0.5px;
+        width: 75%;
+        margin: 0 auto;
+    }
 }
+
+
+// Media Query
+
+@media (max-width: 1024px) {
+    .modal {
+        padding: 40px;
+        &__image-button {
+            width: 25%;
+        }
+        &__text {
+            width: 75%;
+        }
+    }
+}
+
+@media (max-width: 960px) {
+    .modal {
+        &__image-button {
+            width: 30%;
+        }
+        &__text {
+            width: 70%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .modal {
+        padding: 30px;
+        &__image-button {
+            width: 100%;
+            float: none;
+        }
+        &__text {
+            width: 100%;
+            float: none;
+        }
+    }
+    .similar-books {
+        &__book {
+            width: 25%;
+        }
+        &__title {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+@media (max-width: 580px) {
+    .similar-books {
+        &__book {
+            width: calc(100% / 3);
+        }
+        &__title {
+            display: none;
+        }
+    }
+}
+
+
