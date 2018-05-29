@@ -1,5 +1,9 @@
 .saved {
-    height: 90vh;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba($deep-forest-green,0.5), rgba($deep-forest-green,0.5)),url(../../assets/header.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     position: relative;
 }
 
