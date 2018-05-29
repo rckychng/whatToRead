@@ -108,15 +108,26 @@ class Modal extends React.Component {
         console.log(this.state.similarBooksDisplay);
         return (
             <div className="modal">
-                <button className="close" onClick={() => this.state.onClose([])}>Close</button>
-                <h2>{bookData.title}</h2>
+                <div className="modal__close-button" onClick={() => this.state.onClose([])}>
+                    <i className="fa fa-times modal__close-icon"></i>
+                </div>
+                <h2 className="modal__title">{bookData.title}</h2>
                 <h3>by {authorName}</h3>
-                <img src={bookData.image_url} alt=""/>
-                <div dangerouslySetInnerHTML= {{__html: bookData.description}}/>
-                <p>Pages: {bookData.num_pages}</p>
-                <p>Rating: {bookData.average_rating}/5</p>
-                <a href={bookData.link} target='_blank'>See on Goodreads</a>
-                {this.props.loggedIn === true ? <button onClick={this.saveToFirebase} className="add-to-shelf">Add to Shelf</button> : <button onClick={this.props.login}>Login to save book</button>}
+                <div className="modal__details clearfix">
+                    <div className="modal__image-button">
+                        <div className="modal__image-container">
+                            <img className="modal__image" src={bookData.image_url} alt="Book Cover"/>
+                        </div>
+                        {this.props.loggedIn === true ? <button className="modal__save-button" onClick={this.saveToFirebase}>Add to Shelf</button> : <button className="modal__save-button" onClick={this.props.login}>Login to save book</button>}
+                    </div>
+                    <div className="modal__text">
+                        <p className="modal__description" dangerouslySetInnerHTML={{__html: bookData.description}}></p>
+                        <p>Pages: {bookData.num_pages}</p>
+                        <p className="modal__rating">Rating: {bookData.average_rating}/5</p>
+                        <a href={bookData.link} target='_blank'>See on Goodreads</a>
+                    </div>
+                </div>
+
                 <SimilarBooks
                     similarBooks={similarBooksDisplay} 
                     />                

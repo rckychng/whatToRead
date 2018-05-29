@@ -2,13 +2,15 @@ import React from 'react';
 
 const SimilarBooks = (props) => {
     return (
-        <div className="similar-book-container clearfix">
-            <h2>Similar Books</h2>
+        <div className="similar-books clearfix">
+            <h2 className="similar-books__subtitle">Similar Books</h2>
                 {props.similarBooks.map((book) => {
                     return (
-                        <div className="similar-book" key={book.isbn}>
-                            <img src={book.image_url} alt="Book cover"/>
-                            <h3>{book.title}</h3>
+                        <div className="similar-books__book">
+                            <div className="similar-books__image-container" key={book.isbn}>
+                                <img className="similar-books__image" src={book.image_url} alt="Book cover"/>
+                            </div>
+                            <h3 className="similar-books__title">{book.title}</h3>
                         </div>
                     )
                 })}
