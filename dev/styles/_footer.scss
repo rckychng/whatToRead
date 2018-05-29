@@ -1,0 +1,18 @@
+.footer {
+    background: $deep-forest-green;
+    p {
+        margin: 0;
+        text-align: center;
+        padding: 2%;
+        color: $scotch-mist;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        a {
+            transition: 0.3s;
+        }
+        a:hover {
+            color: $forest-green;
+            border-bottom: 1px solid $forest-green;
+        }
+    }
+}
