@@ -42,7 +42,7 @@
     // -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     // animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     &__close-button {
-        position: absolute;
+        position: fixed;
         top: 10px;
         right: 15px;
         cursor: pointer;

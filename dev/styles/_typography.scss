@@ -22,6 +22,12 @@ h1 {
         width: 70px;
     }
 }
+@media (max-width: 360px) {
+    h1 {
+        line-height: 1;
+        padding-top: 45%;
+    }
+}
 h2 {
     text-transform: uppercase;
     letter-spacing: 5px;
