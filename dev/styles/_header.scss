@@ -1,5 +1,5 @@
 header {
-    background: linear-gradient(to right, rgba($deep-forest-green,0.5), rgba($deep-forest-green,0.5)),url(../../assets/header.jpg);
+    background: linear-gradient(to bottom, rgba($deep-forest-green,0.5), rgba($deep-forest-green,0.5)),url(../../assets/header.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -21,7 +21,6 @@ header {
             border: 1px solid $scotch-mist;
             height: 39px ;
             width: 150px;
-            text-align: center;
             text-transform: uppercase;
             vertical-align: text-bottom;
             letter-spacing: 2px;

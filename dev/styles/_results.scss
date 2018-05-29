@@ -65,16 +65,32 @@
   }
 }
 
-//TODO: move buttons to bottom on mobile
-//TODO: add font-awesome 
+//add in emblem of person reading (noun project)
+//change background to scotch mist
+//give emblem background of green
 .results {
-  background: $forest-green;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
+  .emblem-container {
+    box-shadow: 0 0 20px $forest-green;
+    position: absolute;
+    top: -15px;
+    transform: rotateZ(45deg) translateX(-50%);
+    transform-origin: 0%;
+    position: absolute;
+    left: 50%;
+    background: $forest-green;
+    .emblem {
+      transform: rotate(-45deg);
+      width: 100px;
+    }
+  }
   .next-page, .previous-page {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    background: $forest-green;
+    border: transparent;    
     img {
       width: 30px;
       object-fit: cover;
@@ -82,7 +98,7 @@
   }
   .next-page {
     position: absolute;
-    right: 0;
+    right: 10px;
     top:50%;
     transform: translateY(-50%);
   }
@@ -91,34 +107,32 @@
       transform: rotate(180deg);
     }
     position: absolute;
-    left: 0;
+    left: 10px;
     top:50%;
     transform: translateY(-50%);
   }
   .gallery {
-    background: $scotch-mist;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    
-    // width: 70%;
+    background: $golden-poppy;
+    width: 80%;
+    margin: 50px auto;
+    box-shadow: 0 0 50px darken($scotch-mist, 50);
+    padding: 100px;
       .title-gallery {
-          width: calc(20% - 30px);
-          margin: 30px 15px;
-          float: left;
-          height: 300px;
-          text-align: center;
+        width: calc(20% - 20px);
+        min-width: 95px;
+        margin: 30px 10px;
+        float: left;
+        height: 250px;
+        text-align: center;
           .cover-container {
             width: 100%;
             max-width: 200px;
             height: auto;
-            text-align: center;
+            margin: 0 auto;
             img {
-              display: block;
+              max-width: 150px;
               width: 100%;
-              height: 100%;
-              object-fit: cover;                  
+              height: auto;             
             }
           }
           @media(max-width: 428px) {
@@ -126,6 +140,7 @@
           }
       }
       .title-gallery:hover {
+        cursor: pointer;
         -webkit-animation: shake-bottom 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
         animation: shake-bottom 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
       }
