@@ -92,32 +92,29 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <Router>
+    return <Router>
         <div className="app-container">
           <div className="nav">
-            {this.state.loggedIn === false && (
-              <button onClick={this.loginWithGoogle}>Login</button>
-            )}
-            {this.state.loggedIn === true ? (
-              <button onClick={this.logout}>Logout</button>
-            ) : null}
-            <Link to="/" className="nav-links">Recommendations</Link>
-            {this.state.loggedIn === true && ( 
-              <Link to="/SavedBooks" className="nav-links" >My Books</Link>
-            )}
+            <Link to="/" className="nav-links">
+              Home
+            </Link>
+            {this.state.loggedIn === true && <Link to="/SavedBooks" className="nav-links">
+                My Books
+              </Link>}
+            {this.state.loggedIn === false && <button
+                onClick={this.loginWithGoogle}
+              >
+                Login
+              </button>}
+            {this.state.loggedIn === true ? <button onClick={this.logout}>
+                Logout
+              </button> : null}
           </div>
-          <Route 
-            exact path="/"  
-            render= {() => <RecPage userID={this.state.userID} loggedIn={this.state.loggedIn} login={this.loginWithGoogle}/>}
-          />
-          <Route 
-            path="/SavedBooks" 
-            component ={SavedBooks} />
+          <Route exact path="/" render={() => <RecPage userID={this.state.userID} loggedIn={this.state.loggedIn} login={this.loginWithGoogle} />} />
+          <Route path="/SavedBooks" component={SavedBooks} />
           <Footer />
         </div>
-      </Router>
-    );
+      </Router>;
   }
 }
 

@@ -49,7 +49,7 @@
         display: block;
         width: 100%;
         height: 100%;
-        object-fit: cover top;
+        object-fit: cover;
     }
     &__text {
         width: 50%;
@@ -104,3 +104,101 @@
         float: left;          
     }
 }
+
+@media (max-width: 919px) {
+    .saved {
+        .saved-book {
+            &__buttons {
+                .saved-book__button-container {
+                    min-width: 150px;
+                    p {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+            &__text {
+                width: 40%;
+                .saved-book__title {
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .saved {
+        .saved-book {
+            &__text {
+                width: 30%;
+                .saved-book__title {
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }    
+}
+
+@media (max-width: 692px) {
+    .saved {
+        .saved-book {
+            &__buttons {
+                width: 100%;
+                .saved-book__button-container {
+                    min-width: 150px;
+                    p {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+            &__text {
+                float: right;
+                width: 60%;
+                .saved-book__title {
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }    
+}
+
+@media (max-width: 494px) {
+    .saved {
+        .saved-book {
+            &__image-container {
+                margin: 0 auto;
+                display: block;
+                float: none;
+            }
+            float: none;
+            &__buttons {
+                width: 100%;
+                .saved-book__button-container {
+                    min-width: 150px;
+                    p {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+            &__text {
+                float: none;
+                clear: both;
+                width: 100%;
+                text-align: center;
+                line-height: 1.6;
+                .saved-book__title {
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }      
+}
+
+@media (max-width: 393px) {
+    .saved-section.wrapper {
+        top: 55%;
+        max-width: 90%;
+    }
+}
+//float none
+//margin o auto on images
