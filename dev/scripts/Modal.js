@@ -117,7 +117,7 @@ class Modal extends React.Component {
                     <p className="modal__page-number">Pages: {bookData.num_pages}</p>
                 </div>
                 <div className="modal__details clearfix">
-                    <div className="modal__image-button">
+                    <div className="modal__image-button clearfix">
                         <div className="modal__image-container">
                             <img className="modal__image" src={bookData.image_url} alt="Book Cover"/>
                         </div>
@@ -129,7 +129,7 @@ class Modal extends React.Component {
                     </div>
                     <div className="modal__text">
                         <p className="modal__description" dangerouslySetInnerHTML={{__html: bookData.description}}></p>
-                        <a className="modal__link" href={bookData.link} target='_blank'>See on Goodreads</a>
+                        <a className="modal__link" href={bookData.link} target='_blank'>View book on Goodreads</a>
                     </div>
                 </div>
 
