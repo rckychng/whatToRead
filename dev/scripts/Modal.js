@@ -90,12 +90,22 @@ class Modal extends React.Component {
         console.log(this.state.similarBooksDisplay);
         return (
             <div className="modal">
-                <button className="close" onClick={() => this.state.onClose([])}>Close</button>
-                <h2>{bookData.title}</h2>
-                <img src={bookData.image_url} alt=""/>
-                <div dangerouslySetInnerHTML= {{__html: bookData.description}}/>
-                <p>Rating: {bookData.average_rating}/5</p>
-                <button onClick={this.saveToFirebase} className="add-to-shelf">Add to Shelf</button>
+                <div className="modal__close-button" onClick={() => this.state.onClose([])}>
+                    <i className="fa fa-times modal__close-icon"></i>
+                </div>
+                <h2 className="modal__title">{bookData.title}</h2>
+                <div className="modal__details clearfix">
+                    <div className="modal__image-button">
+                        <div className="modal__image-container">
+                            <img className="modal__image" src={bookData.image_url} alt="Book Cover"/>
+                        </div>
+                        <button className="modal__save-button" onClick={this.saveToFirebase}>Save</button>  
+                    </div>
+                    <div className="modal__text">
+                        <p className="modal__description" dangerouslySetInnerHTML={{__html: bookData.description}}></p>
+                        <p className="modal__rating">Rating: {bookData.average_rating}/5</p>
+                    </div>
+                </div>
                 <SimilarBooks
                     similarBooks={similarBooksDisplay} 
                     />                
