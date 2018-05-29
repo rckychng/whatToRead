@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import SavedBooks from './SavedBooks';
 import firebase from 'firebase';
+import Footer from './Footer';
 
 
   //Saved books page/user authentication
@@ -113,6 +114,7 @@ class App extends React.Component {
           <Route 
             path="/SavedBooks" 
             component ={SavedBooks} />
+          <Footer />
         </div>
       </Router>
     );
