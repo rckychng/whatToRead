@@ -30,9 +30,13 @@
     padding: 50px 0;
 }
 
+.result-modal-container {
+    position: relative;
+}
+
 .modal {
     width: 80%;
-    height: 85vh;
+    height: 90%;
     background-color: $golden-poppy;
     padding: 50px;
     overflow: scroll;
@@ -183,7 +187,6 @@
         height: 153px;
         display: block;
         margin: 0 auto 15px auto;
-
     }
     &__image {
         display: block;
@@ -191,15 +194,21 @@
         height: 100%;
         object-fit: cover;
     }
-    &__title {
+    &__no-photo {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: $scotch-mist;
+        padding: 10px;
+    }
+    &__no-photo-text {
         font-family: $body-text;
         font-weight: 400;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         text-align: center;
-        letter-spacing: 0.5px;
-        width: 75%;
-        margin: 0 auto;
+        margin: 0;
     }
+
 }
 
 
@@ -230,10 +239,24 @@
 
 @media (max-width: 768px) {
     .modal {
-        padding: 30px;
+        &__title {
+            font-size: 2.4rem;
+            text-align: center;
+        }
+        &__author {
+            font-size: 1.8rem;
+        }
+        &__image-container {
+            margin: 0 auto 20px auto;
+        }
         &__image-button {
             width: 100%;
             float: none;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        &__rating {
+            margin: 0 auto;
         }
         &__text {
             width: 100%;
@@ -247,6 +270,9 @@
         &__title {
             font-size: 1.2rem;
         }
+        &__subtitle {
+            text-align: center;
+        }
     }
 }
 
@@ -257,6 +283,14 @@
         }
         &__title {
             display: none;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .similar-books {
+        &__book {
+            width: 50%;
         }
     }
 }
